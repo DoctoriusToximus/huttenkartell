@@ -152,10 +152,61 @@
     .modal-close-x:hover { color: var(--accent2); }
 
     /* PANEL PAGE */
-    .panel-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; z-index: 2; padding-top: 64px; }
-    .panel-content { text-align: center; }
-    .panel-label { font-size: .72rem; letter-spacing: .35em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
-    .panel-title { font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--bright); letter-spacing: .1em; text-transform: uppercase; }
+    .panel-wrap {
+      display: flex; min-height: 100vh; padding-top: 64px; position: relative; z-index: 2;
+    }
+    .panel-sidebar {
+      width: 220px; min-height: calc(100vh - 64px); background: var(--surface);
+      border-right: 1px solid var(--border); padding: 32px 0; flex-shrink: 0;
+      position: sticky; top: 64px; height: calc(100vh - 64px); overflow-y: auto;
+    }
+    .panel-sidebar-title {
+      font-family: 'Orbitron', sans-serif; font-size: .75rem; font-weight: 700;
+      letter-spacing: .3em; text-transform: uppercase; color: var(--accent);
+      padding: 0 24px 20px; border-bottom: 1px solid var(--border); margin-bottom: 12px;
+    }
+    .panel-tab {
+      display: block; width: 100%; text-align: left; padding: 12px 24px;
+      background: none; border: none; border-left: 3px solid transparent;
+      color: var(--dim); font-family: 'Rajdhani', sans-serif; font-weight: 600;
+      font-size: .88rem; letter-spacing: .08em; cursor: pointer; transition: all .2s;
+    }
+    .panel-tab:hover { color: var(--accent2); background: var(--surface2); }
+    .panel-tab.active { color: var(--accent2); border-left-color: var(--accent); background: var(--surface2); }
+
+    .panel-main { flex: 1; padding: 48px 48px; overflow-y: auto; }
+    .panel-section { display: none; }
+    .panel-section.active { display: block; }
+    .panel-section-header { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+
+    /* Sub-tabs */
+    .subtab-bar { display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap; }
+    .subtab {
+      background: var(--surface); border: 1px solid var(--border); color: var(--dim);
+      font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: .82rem;
+      letter-spacing: .1em; text-transform: uppercase; padding: 8px 20px;
+      cursor: pointer; transition: all .2s;
+    }
+    .subtab:hover { border-color: var(--accent); color: var(--accent2); }
+    .subtab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .subtab-content { display: none; }
+    .subtab-content.active { display: block; }
+
+    /* Weapon cards */
+    .weapon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+    .weapon-card {
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 28px 24px; text-align: center; position: relative;
+      transition: all .3s; overflow: hidden;
+    }
+    .weapon-card::before { content:''; position:absolute; top:0;left:0;right:0; height:2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity:0; transition:opacity .3s; }
+    .weapon-card:hover { background: var(--surface2); border-color: rgba(192,57,43,.35); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.5), 0 0 30px var(--glow); }
+    .weapon-card:hover::before { opacity: 1; }
+    .weapon-icon { font-size: 2.2rem; margin-bottom: 14px; }
+    .weapon-name { font-family: 'Orbitron', sans-serif; font-size: .9rem; font-weight: 700; color: var(--bright); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 10px; }
+    .weapon-desc { color: var(--dim); font-size: .88rem; line-height: 1.55; margin-bottom: 18px; }
+    .weapon-price { font-family: 'Orbitron', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--accent2); }
+    .weapon-price span { font-size: .72rem; letter-spacing: .15em; color: var(--dim); display: block; margin-top: 2px; }
 
     @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
     @keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)} 40%{transform:translateX(8px)} 60%{transform:translateX(-6px)} 80%{transform:translateX(6px)} }
@@ -280,14 +331,26 @@
             <div class="leader-rank">☠ Unterlord</div>
             <p class="leader-bio">Der unbestrittene Vollstrecker des Kartells. Flame führt mit Kaltblütigkeit und strategischem Genius.</p>
           </div>
+        </div>
+
+        <div class="leaders-sep"></div>
+
+        <!-- Tier 3 -->
+        <div class="leaders-row tier-3 reveal">
           <div class="leader-card">
             <div class="leader-avatar">
-              <img src="https://i.imgur.com/JOVL4ae.png" alt="Christos Sluss" onerror="this.style.display='none'"/>
+              <img src="https://i.imgur.com/i7dXdkY.png" alt="Christos Sluss" onerror="this.style.display='none'"/>
               CP
             </div>
             <div class="leader-name">Christos "Sluss" Petridis</div>
             <div class="leader-rank">⚡ Vollstrecker</div>
             <p class="leader-bio">Der Arm des Kartells. Sluss setzt Befehle mit Entschlossenheit und Effizienz um — keine zweite Chance.</p>
+          </div>
+          <div class="leader-card">
+            <div class="leader-avatar">MW</div>
+            <div class="leader-name">Marwin</div>
+            <div class="leader-rank">⚡ Vollstrecker</div>
+            <p class="leader-bio">Ein weiterer Vollstrecker des Kartells — Marwin steht für Stärke und bedingungslose Loyalität gegenüber der Führung.</p>
           </div>
         </div>
 
@@ -334,11 +397,68 @@
 
 <!-- PANEL PAGE -->
 <div class="page" id="page-panel">
-  <div class="panel-page">
-    <div class="panel-content reveal">
-      <div class="panel-label">Interner Bereich</div>
-      <div class="panel-title">Panel</div>
+  <div class="panel-wrap">
+
+    <!-- Sidebar tabs -->
+    <div class="panel-sidebar">
+      <div class="panel-sidebar-title">Panel</div>
+      <button class="panel-tab active" onclick="switchTab('informationen')">📋 Informationen</button>
     </div>
+
+    <!-- Content area -->
+    <div class="panel-main">
+
+      <!-- Informationen tab -->
+      <div class="panel-section active" id="tab-informationen">
+        <div class="panel-section-header">
+          <div class="sec-label">Interner Bereich</div>
+          <h2 class="sec-title" style="margin-bottom:0">Informationen</h2>
+        </div>
+
+        <!-- Sub-tabs -->
+        <div class="subtab-bar">
+          <button class="subtab active" onclick="switchSubtab('waffen-preise')">⚔️ Waffen Preise</button>
+        </div>
+
+        <!-- Waffen Preise -->
+        <div class="subtab-content active" id="subtab-waffen-preise">
+          <div class="weapon-grid">
+            <div class="weapon-card">
+              <div class="weapon-icon">🎯</div>
+              <div class="weapon-name">NT-242</div>
+              <div class="weapon-desc">Stärkstes Scharfschützengewehr.</div>
+              <div class="weapon-price">20,000 <span>Credits</span></div>
+            </div>
+            <div class="weapon-card">
+              <div class="weapon-icon">💥</div>
+              <div class="weapon-name">JND-41 Shotgun</div>
+              <div class="weapon-desc">Stärkste Shotgun.</div>
+              <div class="weapon-price">15,000 <span>Credits</span></div>
+            </div>
+            <div class="weapon-card">
+              <div class="weapon-icon">🔫</div>
+              <div class="weapon-name">BK-43</div>
+              <div class="weapon-desc">Stärkste Sturmgewehr.</div>
+              <div class="weapon-price">10,000 <span>Credits</span></div>
+            </div>
+            <div class="weapon-card">
+              <div class="weapon-icon">🔥</div>
+              <div class="weapon-name">M-45 LMG</div>
+              <div class="weapon-desc">Stärkste LMG.</div>
+              <div class="weapon-price">15,000 <span>Credits</span></div>
+            </div>
+            <div class="weapon-card">
+              <div class="weapon-icon">🔩</div>
+              <div class="weapon-name">POWER-5</div>
+              <div class="weapon-desc">Stärkste Pistole.</div>
+              <div class="weapon-price">7,000 <span>Credits</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -400,6 +520,21 @@
   document.getElementById('modal').addEventListener('click', function(e) {
     if(e.target === this) closeModal();
   });
+
+  function switchTab(name) {
+    document.querySelectorAll('.panel-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel-section').forEach(s => s.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('tab-' + name).classList.add('active');
+  }
+
+  function switchSubtab(name) {
+    const parent = event.target.closest('.panel-section');
+    parent.querySelectorAll('.subtab').forEach(t => t.classList.remove('active'));
+    parent.querySelectorAll('.subtab-content').forEach(s => s.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('subtab-' + name).classList.add('active');
+  }
 </script>
 </body>
 </html>
