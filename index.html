@@ -307,6 +307,32 @@
     .log-delete { background: none; border: none; color: var(--dim); cursor: pointer; font-size: .9rem; transition: color .2s; padding: 2px 6px; }
     .log-delete:hover { color: var(--accent2); }
 
+    /* ENC LOCK SCREEN */
+    .enc-lock-screen {
+      max-width: 360px; margin: 40px auto; text-align: center;
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 48px 40px; position: relative;
+    }
+    .enc-lock-screen::before {
+      content:''; position:absolute; top:0;left:0;right:0; height:2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+    .enc-lock-icon { font-size: 2.4rem; margin-bottom: 16px; }
+    .enc-lock-title {
+      font-family: 'Orbitron', sans-serif; font-size: .95rem; font-weight: 700;
+      color: var(--bright); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px;
+    }
+    .enc-lock-sub { font-size: .88rem; color: var(--dim); margin-bottom: 28px; line-height: 1.5; }
+    .enc-lock-input {
+      width: 100%; background: var(--bg); border: 1px solid var(--border);
+      color: var(--bright); font-family: 'Rajdhani', sans-serif; font-size: 1.2rem;
+      letter-spacing: .4em; text-align: center; padding: 12px 16px; outline: none;
+      transition: border-color .2s; margin-bottom: 12px; display: block;
+    }
+    .enc-lock-input:focus { border-color: var(--accent); box-shadow: 0 0 12px var(--glow); }
+    .enc-lock-error { font-size: .8rem; color: var(--accent2); letter-spacing: .08em; min-height: 20px; margin-bottom: 16px; }
+    .enc-lock-btn { width: 100%; font-size: .85rem; padding: 12px; }
+
     /* MATERIAL TRACKER */
     .tracker-weapon-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
     .tracker-weapon-btn {
@@ -809,7 +835,17 @@
           <div class="sec-label">Interner Bereich</div>
           <h2 class="sec-title" style="margin-bottom:0">Verschlüsseler</h2>
         </div>
-        <div class="enc-wrap">
+        <!-- Lock screen -->
+        <div id="enc-lock" class="enc-lock-screen">
+          <div class="enc-lock-icon">🔐</div>
+          <div class="enc-lock-title">Zugang erforderlich</div>
+          <p class="enc-lock-sub">Gib das Passwort ein, um den Verschlüsseler zu nutzen.</p>
+          <input type="password" class="enc-lock-input" id="enc-pw" placeholder="••••••" maxlength="20" onkeydown="if(event.key==='Enter')unlockEnc()"/>
+          <div class="enc-lock-error" id="enc-pw-error"></div>
+          <button class="btn btn-primary enc-lock-btn" onclick="unlockEnc()">Entsperren</button>
+        </div>
+
+        <div class="enc-wrap" id="enc-content" style="display:none">
           <p class="enc-desc">Verschlüssele oder entschlüssele Nachrichten mit einem geheimen Schlüssel. Nur wer den Schlüssel kennt, kann die Nachricht lesen.</p>
           <div class="enc-grid">
             <div class="enc-col">
@@ -817,6 +853,7 @@
               <textarea class="enc-textarea" id="enc-input" placeholder="Text hier eingeben..."></textarea>
             </div>
             <div class="enc-middle">
+              <label class="enc-label" id="enc-key-label">Schlüssel</label>
               <input type="text" class="enc-key-input" id="enc-key" placeholder="Schlüssel (z.B. 'kartell')"/>
               <button class="btn btn-primary enc-btn" onclick="encryptText()">🔒 Verschlüsseln</button>
               <button class="btn btn-outline enc-btn" onclick="decryptText()">🔓 Entschlüsseln</button>
@@ -827,6 +864,7 @@
               <button class="btn btn-outline enc-copy" onclick="copyResult()">📋 Kopieren</button>
             </div>
           </div>
+        </div>
         </div>
       </div>
 
@@ -928,6 +966,27 @@
   }
 
   // VERSCHLÜSSELER
+  let encMode = 'vigenere'; // 'vigenere' or 'caesar'
+
+  function unlockEnc() {
+    const pw = document.getElementById('enc-pw').value;
+    if(pw === '111') {
+      encMode = 'vigenere';
+      document.getElementById('enc-lock').style.display = 'none';
+      document.getElementById('enc-content').style.display = 'block';
+      document.getElementById('enc-key').style.display = '';
+      document.getElementById('enc-key-label').style.display = '';
+    } else if(pw === '122') {
+      encMode = 'caesar';
+      document.getElementById('enc-lock').style.display = 'none';
+      document.getElementById('enc-content').style.display = 'block';
+      document.getElementById('enc-key').placeholder = 'Verschiebung (z.B. 7)';
+      document.getElementById('enc-key-label').textContent = 'Verschiebung (Zahl)';
+    } else {
+      document.getElementById('enc-pw-error').textContent = 'Falsches Passwort. Zugang verweigert.';
+      document.getElementById('enc-pw').value = '';
+    }
+  }
   function vigenere(text, key, encrypt) {
     key = key.toLowerCase().replace(/[^a-z]/g, '') || 'key';
     let result = ''; let ki = 0;
@@ -945,15 +1004,29 @@
     }
     return result;
   }
+  function caesar(text, shift, encrypt) {
+    shift = (parseInt(shift) || 3) % 26;
+    if(!encrypt) shift = 26 - shift;
+    let result = '';
+    for(let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if(/[a-zA-Z]/.test(c)) {
+        const base = c >= 'a' ? 97 : 65;
+        result += String.fromCharCode((c.charCodeAt(0) - base + shift) % 26 + base);
+      } else { result += c; }
+    }
+    return result;
+  }
+
   function encryptText() {
     const t = document.getElementById('enc-input').value;
     const k = document.getElementById('enc-key').value;
-    document.getElementById('enc-output').value = vigenere(t, k, true);
+    document.getElementById('enc-output').value = encMode === 'caesar' ? caesar(t, k, true) : vigenere(t, k, true);
   }
   function decryptText() {
     const t = document.getElementById('enc-input').value;
     const k = document.getElementById('enc-key').value;
-    document.getElementById('enc-output').value = vigenere(t, k, false);
+    document.getElementById('enc-output').value = encMode === 'caesar' ? caesar(t, k, false) : vigenere(t, k, false);
   }
   function copyResult() {
     const out = document.getElementById('enc-output');
