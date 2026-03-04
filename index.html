@@ -399,6 +399,65 @@
     .tracker-craft-hint { font-size: .78rem; color: #2ecc71; letter-spacing: .08em; margin-top: 10px; opacity: .8; }
     @keyframes pulse-green { 0%,100%{box-shadow:0 0 0 0 rgba(46,204,113,.4)} 50%{box-shadow:0 0 12px 4px rgba(46,204,113,.2)} }
 
+    /* HIERARCHY */
+    .hierarchy-list { max-width: 750px; }
+    .hier-item {
+      display: flex; align-items: center; gap: 24px;
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 20px 28px; transition: all .25s; position: relative; overflow: hidden;
+    }
+    .hier-item::before { content:''; position:absolute; left:0;top:0;bottom:0; width:3px; transition: background .25s; }
+    .tier-top::before { background: #e8b84b; }
+    .tier-high::before { background: var(--accent); }
+    .tier-mid::before { background: #7f8c8d; }
+    .tier-low::before { background: #4a5568; }
+    .tier-new::before { background: #2d3748; }
+    .hier-item:hover { background: var(--surface2); transform: translateX(4px); }
+    .hier-rank-num {
+      font-family: 'Orbitron', sans-serif; font-size: .8rem; font-weight: 700;
+      color: var(--dim); width: 28px; text-align: center; flex-shrink: 0;
+    }
+    .tier-top .hier-rank-num { color: #e8b84b; }
+    .hier-info { flex: 1; }
+    .hier-name { font-family: 'Orbitron', sans-serif; font-size: .88rem; font-weight: 700; color: var(--bright); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 4px; }
+    .hier-desc { font-size: .85rem; color: var(--dim); line-height: 1.5; }
+    .hier-badge {
+      font-size: .65rem; letter-spacing: .18em; text-transform: uppercase;
+      padding: 4px 12px; border: 1px solid; flex-shrink: 0;
+    }
+    .hier-badge.top { color: #e8b84b; border-color: #e8b84b; background: rgba(232,184,75,.08); }
+    .hier-badge.high { color: var(--accent2); border-color: var(--accent); background: rgba(192,57,43,.08); }
+    .hier-badge.mid { color: #95a5a6; border-color: #7f8c8d; background: rgba(127,140,141,.08); }
+    .hier-badge.low { color: #718096; border-color: #4a5568; background: rgba(74,85,104,.08); }
+    .hier-badge.new { color: var(--dim); border-color: #2d3748; background: rgba(45,55,72,.08); }
+    .hier-connector { width: 2px; height: 12px; background: var(--border); margin-left: 51px; }
+
+    /* RECRUITMENT */
+    .recruit-grid { display: grid; grid-template-columns: 1fr 300px; gap: 48px; align-items: start; }
+    .recruit-text { color: var(--dim); font-size: 1rem; line-height: 1.7; margin-bottom: 16px; }
+    .recruit-text strong { color: var(--text); }
+    .recruit-steps { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
+    .recruit-step { display: flex; align-items: center; gap: 16px; }
+    .recruit-step-num {
+      width: 32px; height: 32px; border-radius: 50%; background: var(--accent);
+      color: #fff; font-family: 'Orbitron', sans-serif; font-size: .78rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      box-shadow: 0 0 10px var(--glow);
+    }
+    .recruit-step-text { font-size: .95rem; color: var(--dim); }
+    .recruit-step-text strong { color: var(--text); }
+    .recruit-card {
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 36px 28px; text-align: center; position: relative; overflow: hidden;
+    }
+    .recruit-card::before { content:''; position:absolute; top:0;left:0;right:0; height:2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
+    .recruit-card-label { font-size: .68rem; letter-spacing: .3em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .recruit-card-icon { font-size: 2.4rem; margin-bottom: 12px; }
+    .recruit-card-title { font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 700; color: var(--bright); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
+    .recruit-card-sub { font-size: .88rem; color: var(--accent2); margin-bottom: 16px; letter-spacing: .04em; }
+    .recruit-card-hint { font-size: .8rem; color: var(--dim); line-height: 1.5; }
+    @media(max-width:768px){ .recruit-grid{grid-template-columns:1fr} }
+
     @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
     @keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)} 40%{transform:translateX(8px)} 60%{transform:translateX(-6px)} 80%{transform:translateX(6px)} }
     .reveal { opacity:0; transform:translateY(30px); transition: opacity .7s ease, transform .7s ease; }
@@ -586,6 +645,132 @@
           <div class="job-name">Dealer</div>
           <div class="job-desc">Die Dealer des Kartells kontrollieren den Vertrieb von Substanzen durch das gesamte Netzwerk. Von der Herstellung bis zum Verkauf — alles läuft durch vertrauenswürdige Kanäle. Umsatz und Stillschweigen sind die obersten Gebote.</div>
           <div class="job-icon">💊</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HIERARCHY -->
+  <section class="content-sec" id="hierarchy-sec">
+    <div class="container">
+      <div class="reveal">
+        <div class="sec-label">Struktur</div>
+        <h2 class="sec-title">Hierarchie</h2>
+        <div class="sec-line"></div>
+      </div>
+      <div class="hierarchy-list reveal">
+        <div class="hier-item tier-top">
+          <div class="hier-rank-num">VIII</div>
+          <div class="hier-info">
+            <div class="hier-name">Majordomus</div>
+            <div class="hier-desc">Die höchste Autorität des Kartells. Sein Wort ist Gesetz.</div>
+          </div>
+          <div class="hier-badge top">Führung</div>
+        </div>
+        <div class="hier-connector"></div>
+        <div class="hier-item tier-high">
+          <div class="hier-rank-num">VII</div>
+          <div class="hier-info">
+            <div class="hier-name">Unterlord</div>
+            <div class="hier-desc">Stellvertreter des Majordomus. Führt Operationen und verwaltet die Vollstrecker.</div>
+          </div>
+          <div class="hier-badge high">Führung</div>
+        </div>
+        <div class="hier-connector"></div>
+        <div class="hier-item tier-high">
+          <div class="hier-rank-num">VI</div>
+          <div class="hier-info">
+            <div class="hier-name">Vollstrecker</div>
+            <div class="hier-desc">Elite-Mitglieder des Kartells. Führen wichtige Aufträge aus und leiten untere Ränge.</div>
+          </div>
+          <div class="hier-badge high">Führung</div>
+        </div>
+        <div class="hier-connector"></div>
+        <div class="hier-item tier-mid">
+          <div class="hier-rank-num">V</div>
+          <div class="hier-info">
+            <div class="hier-name">Veteran</div>
+            <div class="hier-desc">Bewährte Mitglieder mit langer Zugehörigkeit und besonderem Vertrauen.</div>
+          </div>
+          <div class="hier-badge mid">Mitglied</div>
+        </div>
+        <div class="hier-connector"></div>
+        <div class="hier-item tier-mid">
+          <div class="hier-rank-num">IV</div>
+          <div class="hier-info">
+            <div class="hier-name">Erfahrenes Mitglied</div>
+            <div class="hier-desc">Aktive Mitglieder die sich durch ihre Arbeit für das Kartell verdient gemacht haben.</div>
+          </div>
+          <div class="hier-badge mid">Mitglied</div>
+        </div>
+        <div class="hier-connector"></div>
+        <div class="hier-item tier-low">
+          <div class="hier-rank-num">III</div>
+          <div class="hier-info">
+            <div class="hier-name">Mitglied</div>
+            <div class="hier-desc">Vollwertige Mitglieder des Kartells mit Zugang zu allen Operationen.</div>
+          </div>
+          <div class="hier-badge low">Mitglied</div>
+        </div>
+        <div class="hier-connector"></div>
+        <div class="hier-item tier-low">
+          <div class="hier-rank-num">II</div>
+          <div class="hier-info">
+            <div class="hier-name">Schläger</div>
+            <div class="hier-desc">Neue Mitglieder die sich gerade beweisen und ihren Platz im Kartell festigen.</div>
+          </div>
+          <div class="hier-badge low">Einsteiger</div>
+        </div>
+        <div class="hier-connector"></div>
+        <div class="hier-item tier-new">
+          <div class="hier-rank-num">I</div>
+          <div class="hier-info">
+            <div class="hier-name">Newcomer</div>
+            <div class="hier-desc">Frisch aufgenommene Rekruten. Der Beginn des Weges im Huttenkartell.</div>
+          </div>
+          <div class="hier-badge new">Einsteiger</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECRUITMENT -->
+  <section class="content-sec" id="recruit-sec">
+    <div class="container">
+      <div class="reveal">
+        <div class="sec-label">Beitreten</div>
+        <h2 class="sec-title">Rekrutierung</h2>
+        <div class="sec-line"></div>
+      </div>
+      <div class="recruit-grid reveal">
+        <div class="recruit-info">
+          <p class="recruit-text">Du willst Teil des mächtigsten Kartells der Galaxis werden? Das Huttenkartell rekrutiert neue Mitglieder, die bereit sind, Loyalität und Einsatz zu beweisen.</p>
+          <p class="recruit-text">Wende dich direkt an den <strong>Unterlord</strong>, um dein Interesse zu bekunden. Er wird dich durch den Aufnahmeprozess führen und entscheiden, ob du das Zeug hast, Teil unserer Organisation zu werden.</p>
+          <div class="recruit-steps">
+            <div class="recruit-step">
+              <div class="recruit-step-num">1</div>
+              <div class="recruit-step-text">Kontaktiere den <strong>Unterlord</strong> im Spiel</div>
+            </div>
+            <div class="recruit-step">
+              <div class="recruit-step-num">2</div>
+              <div class="recruit-step-text">Stelle dich vor und erkläre deine Motivation</div>
+            </div>
+            <div class="recruit-step">
+              <div class="recruit-step-num">3</div>
+              <div class="recruit-step-text">Bestehe die Aufnahmeprüfung</div>
+            </div>
+            <div class="recruit-step">
+              <div class="recruit-step-num">4</div>
+              <div class="recruit-step-text">Werde als <strong>Newcomer</strong> aufgenommen</div>
+            </div>
+          </div>
+        </div>
+        <div class="recruit-card reveal">
+          <div class="recruit-card-label">Ansprechpartner</div>
+          <div class="recruit-card-icon">👤</div>
+          <div class="recruit-card-title">Unterlord</div>
+          <div class="recruit-card-sub">Fruity "Flame" Olatunji</div>
+          <div class="recruit-card-hint">Finde ihn im Spiel und spreche ihn an.</div>
         </div>
       </div>
     </div>
