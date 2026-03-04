@@ -41,8 +41,36 @@
     .page { display: none; }
     .page.active { display: block; }
 
+    /* TICKER */
+    .ticker-wrap {
+      position: fixed; top: 64px; left: 0; right: 0; z-index: 99;
+      background: rgba(192,57,43,0.12); border-bottom: 1px solid rgba(192,57,43,0.12);
+      overflow: hidden; height: 36px; display: flex; align-items: stretch;
+    }
+    .ticker-label {
+      font-family: 'Orbitron', sans-serif; font-size: .62rem; font-weight: 700;
+      letter-spacing: .2em; color: #fff; background: var(--accent);
+      padding: 0 18px; display: flex; align-items: center;
+      white-space: nowrap; flex-shrink: 0; text-transform: uppercase;
+      line-height: 1;
+    }
+    .ticker-track {
+      display: flex; align-items: center; white-space: nowrap;
+      animation: ticker-scroll 30s linear infinite;
+    }
+    .ticker-track:hover { animation-play-state: paused; }
+    .ticker-msg {
+      font-size: .78rem; letter-spacing: .1em; color: var(--text);
+      padding: 0 48px; text-transform: uppercase;
+    }
+    .ticker-msg span { color: var(--accent2); margin-right: 8px; }
+    @keyframes ticker-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
     /* HERO */
-    .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; padding: 120px 32px 80px; }
+    .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; padding: 140px 32px 80px; }
     .corner { position: absolute; width: 40px; height: 40px; border-color: var(--accent); border-style: solid; opacity: .35; }
     .tl{top:32px;left:32px;border-width:2px 0 0 2px} .tr{top:32px;right:32px;border-width:2px 2px 0 0}
     .bl{bottom:32px;left:32px;border-width:0 0 2px 2px} .br{bottom:32px;right:32px;border-width:0 2px 2px 0}
@@ -153,12 +181,12 @@
 
     /* PANEL PAGE */
     .panel-wrap {
-      display: flex; min-height: 100vh; padding-top: 64px; position: relative; z-index: 2;
+      display: flex; min-height: 100vh; padding-top: 100px; position: relative; z-index: 2;
     }
     .panel-sidebar {
-      width: 220px; min-height: calc(100vh - 64px); background: var(--surface);
+      width: 220px; min-height: calc(100vh - 100px); background: var(--surface);
       border-right: 1px solid var(--border); padding: 32px 0; flex-shrink: 0;
-      position: sticky; top: 64px; height: calc(100vh - 64px); overflow-y: auto;
+      position: sticky; top: 100px; height: calc(100vh - 100px); overflow-y: auto;
     }
     .panel-sidebar-title {
       font-family: 'Orbitron', sans-serif; font-size: .75rem; font-weight: 700;
@@ -208,6 +236,143 @@
     .weapon-price { font-family: 'Orbitron', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--accent2); }
     .weapon-price span { font-size: .72rem; letter-spacing: .15em; color: var(--dim); display: block; margin-top: 2px; }
 
+    /* DRUG GUIDE */
+    .drug-list { display: flex; flex-direction: column; gap: 12px; }
+    .drug-item { background: var(--surface); border: 1px solid var(--border); overflow: hidden; transition: border-color .3s; }
+    .drug-item.open { border-color: rgba(192,57,43,.4); }
+    .drug-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 28px; cursor: pointer; transition: background .2s; user-select: none;
+    }
+    .drug-header:hover { background: var(--surface2); }
+    .drug-header-left { display: flex; align-items: center; gap: 14px; }
+    .drug-icon { font-size: 1.4rem; }
+    .drug-name { font-family: 'Orbitron', sans-serif; font-size: .95rem; font-weight: 700; color: var(--bright); letter-spacing: .08em; text-transform: uppercase; }
+    .drug-arrow { color: var(--accent); font-size: .8rem; transition: transform .3s; }
+    .drug-item.open .drug-arrow { transform: rotate(180deg); }
+    .drug-steps { display: none; padding: 8px 28px 28px; border-top: 1px solid var(--border); }
+    .drug-item.open .drug-steps { display: block; }
+    .step { display: flex; gap: 20px; align-items: flex-start; padding: 16px 0; }
+    .step-number {
+      width: 36px; height: 36px; border-radius: 50%; background: var(--accent);
+      color: #fff; font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: .85rem;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      box-shadow: 0 0 12px var(--glow);
+    }
+    .step-content { flex: 1; padding-top: 6px; }
+    .step-title { font-family: 'Orbitron', sans-serif; font-size: .82rem; font-weight: 700; color: var(--accent2); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 8px; }
+    .step-desc { color: var(--dim); font-size: .92rem; line-height: 1.6; }
+    .step-desc strong { color: var(--text); }
+    .step-list { margin-top: 8px; padding-left: 20px; }
+    .step-list li { color: var(--dim); font-size: .92rem; margin-bottom: 4px; }
+    .step-connector { width: 2px; height: 20px; background: linear-gradient(to bottom, var(--accent), transparent); margin-left: 17px; opacity: .4; }
+
+    /* REGELWERK */
+    .rules-list { display: flex; flex-direction: column; gap: 2px; }
+    .rule-item { display: flex; gap: 0; background: var(--surface); border: 1px solid var(--border); overflow: hidden; transition: all .25s; }
+    .rule-item:hover { background: var(--surface2); border-color: rgba(192,57,43,.3); }
+    .rule-num { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; font-weight: 900; color: var(--accent); padding: 28px 28px; border-right: 1px solid var(--border); min-width: 80px; display: flex; align-items: center; justify-content: center; background: rgba(192,57,43,.05); }
+    .rule-body { padding: 24px 28px; }
+    .rule-title { font-family: 'Orbitron', sans-serif; font-size: .85rem; font-weight: 700; color: var(--bright); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 8px; }
+    .rule-desc { color: var(--dim); font-size: .92rem; line-height: 1.6; }
+    /* VERSCHLÜSSELER */
+    .enc-wrap { max-width: 900px; }
+    .enc-desc { color: var(--dim); font-size: .95rem; margin-bottom: 28px; line-height: 1.6; }
+    .enc-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: start; }
+    .enc-col { display: flex; flex-direction: column; gap: 10px; }
+    .enc-label { font-size: .72rem; letter-spacing: .25em; text-transform: uppercase; color: var(--accent); }
+    .enc-textarea { background: var(--bg); border: 1px solid var(--border); color: var(--bright); font-family: 'Rajdhani', sans-serif; font-size: .95rem; padding: 14px 16px; outline: none; resize: vertical; min-height: 180px; transition: border-color .2s; line-height: 1.6; }
+    .enc-textarea:focus { border-color: var(--accent); }
+    .enc-middle { display: flex; flex-direction: column; gap: 12px; padding-top: 24px; min-width: 160px; }
+    .enc-key-input { background: var(--bg); border: 1px solid var(--border); color: var(--bright); font-family: 'Rajdhani', sans-serif; font-size: .9rem; padding: 10px 14px; outline: none; text-align: center; letter-spacing: .08em; transition: border-color .2s; }
+    .enc-key-input:focus { border-color: var(--accent); }
+    .enc-btn { font-size: .78rem; padding: 10px 16px; text-align: center; }
+    .enc-copy { font-size: .78rem; padding: 8px 14px; margin-top: 4px; }
+    @media(max-width:768px){ .enc-grid{grid-template-columns:1fr} }
+
+    /* CRAFT LOG */
+    .log-empty { color: var(--dim); font-size: .92rem; padding: 24px 0; }
+    .log-stats { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+    .log-stat-item { background: var(--surface); border: 1px solid var(--border); padding: 14px 20px; display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 120px; }
+    .log-stat-name { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); text-align: center; }
+    .log-stat-count { font-family: 'Orbitron', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--accent2); }
+    .log-entries { display: flex; flex-direction: column; gap: 2px; max-width: 700px; }
+    .log-entry { display: flex; justify-content: space-between; align-items: center; background: var(--surface); border: 1px solid var(--border); padding: 14px 20px; transition: background .2s; }
+    .log-entry:hover { background: var(--surface2); }
+    .log-entry-left { display: flex; align-items: center; gap: 14px; }
+    .log-entry-icon { font-size: 1.1rem; opacity: .7; }
+    .log-entry-weapon { font-family: 'Orbitron', sans-serif; font-size: .82rem; font-weight: 700; color: var(--bright); letter-spacing: .06em; text-transform: uppercase; }
+    .log-entry-right { display: flex; align-items: center; gap: 16px; }
+    .log-entry-time { font-size: .8rem; color: var(--dim); letter-spacing: .05em; }
+    .log-delete { background: none; border: none; color: var(--dim); cursor: pointer; font-size: .9rem; transition: color .2s; padding: 2px 6px; }
+    .log-delete:hover { color: var(--accent2); }
+
+    /* MATERIAL TRACKER */
+    .tracker-weapon-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .tracker-weapon-btn {
+      font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: .82rem;
+      letter-spacing: .1em; text-transform: uppercase; padding: 8px 20px;
+      background: var(--surface); border: 1px solid var(--border); color: var(--dim);
+      cursor: pointer; transition: all .2s;
+    }
+    .tracker-weapon-btn:hover { border-color: var(--accent); color: var(--accent2); }
+    .tracker-weapon-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .tracker-card { background: var(--surface); border: 1px solid var(--border); padding: 32px; max-width: 700px; }
+    .tracker-card-title { font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 700; color: var(--bright); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 24px; }
+    .tracker-material { margin-bottom: 20px; }
+    .tracker-mat-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .tracker-mat-name { font-size: .9rem; color: var(--text); font-weight: 600; letter-spacing: .04em; }
+    .tracker-mat-count { font-family: 'Orbitron', sans-serif; font-size: .82rem; color: var(--accent2); }
+    .tracker-bar-bg { background: var(--surface2); border: 1px solid var(--border); height: 10px; border-radius: 2px; overflow: hidden; margin-bottom: 6px; }
+    .tracker-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 2px; transition: width .4s ease; }
+    .tracker-bar-fill.complete { background: linear-gradient(90deg, #27ae60, #2ecc71); }
+    .tracker-input-row { display: flex; align-items: center; gap: 10px; }
+    .tracker-slider {
+      flex: 1; -webkit-appearance: none; appearance: none; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--surface2));
+      border-radius: 2px; outline: none; cursor: pointer; transition: height .2s;
+    }
+    .tracker-slider:hover { height: 5px; }
+    .tracker-slider::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%;
+      background: #fff; cursor: grab; border: 2px solid var(--accent);
+      box-shadow: 0 0 8px var(--glow), 0 0 2px rgba(0,0,0,.5);
+      transition: transform .15s, box-shadow .15s;
+    }
+    .tracker-slider::-webkit-slider-thumb:active { cursor: grabbing; transform: scale(1.3); box-shadow: 0 0 16px var(--glow); }
+    .tracker-slider::-moz-range-thumb {
+      width: 14px; height: 14px; border-radius: 50%;
+      background: #fff; cursor: grab; border: 2px solid var(--accent);
+      box-shadow: 0 0 8px var(--glow);
+    }
+    .tracker-input {
+      width: 90px; background: var(--bg); border: 1px solid var(--border);
+      color: var(--bright); font-family: 'Rajdhani', sans-serif; font-size: .9rem;
+      padding: 6px 10px; outline: none; transition: border-color .2s; text-align: center;
+    }
+    .tracker-input:focus { border-color: var(--accent); }
+    .tracker-input-label { font-size: .78rem; color: var(--dim); letter-spacing: .08em; }
+    .tracker-summary {
+      margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .tracker-summary-text { font-size: .88rem; color: var(--dim); }
+    .tracker-ready {
+      font-family: 'Orbitron', sans-serif; font-size: .8rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase; padding: 8px 20px; border: 1px solid;
+    }
+    .tracker-ready.yes { color: #2ecc71; border-color: #27ae60; background: rgba(39,174,96,.1); }
+    .tracker-ready.no { color: var(--accent2); border-color: var(--accent); background: rgba(192,57,43,.1); }
+    .tracker-craft-btn {
+      font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: .82rem;
+      letter-spacing: .18em; text-transform: uppercase; padding: 10px 28px;
+      background: linear-gradient(135deg, #27ae60, #2ecc71); border: none; color: #fff;
+      cursor: pointer; transition: all .2s; animation: pulse-green 1.5s infinite;
+    }
+    .tracker-craft-btn:hover { transform: scale(1.04); box-shadow: 0 0 20px rgba(46,204,113,.4); }
+    .tracker-craft-hint { font-size: .78rem; color: #2ecc71; letter-spacing: .08em; margin-top: 10px; opacity: .8; }
+    @keyframes pulse-green { 0%,100%{box-shadow:0 0 0 0 rgba(46,204,113,.4)} 50%{box-shadow:0 0 12px 4px rgba(46,204,113,.2)} }
+
     @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
     @keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)} 40%{transform:translateX(8px)} 60%{transform:translateX(-6px)} 80%{transform:translateX(6px)} }
     .reveal { opacity:0; transform:translateY(30px); transition: opacity .7s ease, transform .7s ease; }
@@ -237,6 +402,20 @@
     </ul>
   </div>
 </nav>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track" id="ticker-track">
+    <div class="ticker-msg"><span>★</span> Willkommen im Huttenkartell — Loyalität ist alles.</div>
+    <div class="ticker-msg"><span>☠</span> Neue Waffen im Waffenschmied verfügbar — sprecht den Waffenschmied an.</div>
+    <div class="ticker-msg"><span>💊</span> Drogenproduktion läuft auf Hochtouren — alle Dealer auf Station bleiben.</div>
+    <div class="ticker-msg"><span>⚠</span> Vorsicht in Sektor 7 — feindliche Aktivität gemeldet.</div>
+    <div class="ticker-msg"><span>★</span> Willkommen im Huttenkartell — Loyalität ist alles.</div>
+    <div class="ticker-msg"><span>☠</span> Neue Waffen im Waffenschmied verfügbar — sprecht den Waffenschmied an.</div>
+    <div class="ticker-msg"><span>💊</span> Drogenproduktion läuft auf Hochtouren — alle Dealer auf Station bleiben.</div>
+    <div class="ticker-msg"><span>⚠</span> Vorsicht in Sektor 7 — feindliche Aktivität gemeldet.</div>
+  </div>
+</div>
 
 <!-- PASSWORD MODAL -->
 <div class="modal-overlay" id="modal">
@@ -403,6 +582,10 @@
     <div class="panel-sidebar">
       <div class="panel-sidebar-title">Panel</div>
       <button class="panel-tab active" onclick="switchTab('informationen')">📋 Informationen</button>
+      <button class="panel-tab" onclick="switchTab('regelwerk')">📜 Regelwerk</button>
+      <button class="panel-tab" onclick="switchTab('verschluesseler')">🔐 Verschlüsseler</button>
+      <button class="panel-tab" onclick="switchTab('material-tracker')">⚙️ Material Tracker</button>
+      <button class="panel-tab" onclick="switchTab('craft-log');renderLog()">📒 Craft Log</button>
     </div>
 
     <!-- Content area -->
@@ -418,6 +601,7 @@
         <!-- Sub-tabs -->
         <div class="subtab-bar">
           <button class="subtab active" onclick="switchSubtab('waffen-preise')">⚔️ Waffen Preise</button>
+          <button class="subtab" onclick="switchSubtab('drogen-guide')">💊 Drogen-Guide</button>
         </div>
 
         <!-- Waffen Preise -->
@@ -456,9 +640,219 @@
           </div>
         </div>
 
-      </div>
-    </div>
+        <!-- Drogen Guide -->
+        <div class="subtab-content" id="subtab-drogen-guide">
+          <div class="drug-list">
 
+            <!-- Deathstick -->
+            <div class="drug-item">
+              <div class="drug-header" onclick="toggleDrug(this)">
+                <div class="drug-header-left">
+                  <span class="drug-icon">☠️</span>
+                  <span class="drug-name">Deathstick</span>
+                </div>
+                <span class="drug-arrow">▼</span>
+              </div>
+              <div class="drug-steps">
+                <div class="step">
+                  <div class="step-number">1</div>
+                  <div class="step-content">
+                    <div class="step-title">Saatgut besorgen</div>
+                    <div class="step-desc">Gehe zum <strong>Farming Busch</strong> und hole dir <strong>Balo Pilz Saatgut</strong>.</div>
+                  </div>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step">
+                  <div class="step-number">2</div>
+                  <div class="step-content">
+                    <div class="step-title">Anpflanzen</div>
+                    <div class="step-desc">Lege das Saatgut ins <strong>Beet</strong> und lass es wachsen. <strong>Wartezeit: ~7 Minuten.</strong></div>
+                  </div>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step">
+                  <div class="step-number">3</div>
+                  <div class="step-content">
+                    <div class="step-title">Ernten</div>
+                    <div class="step-desc">Ernte den gewachsenen <strong>Balo Pilz</strong> aus dem Beet.</div>
+                  </div>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step">
+                  <div class="step-number">4</div>
+                  <div class="step-content">
+                    <div class="step-title">Trocknen</div>
+                    <div class="step-desc">Lege den Balo Pilz in die <strong>Trocknungsstation</strong>. Das Ergebnis ist <strong>Getrockneter Balo Pilz</strong>.</div>
+                  </div>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step">
+                  <div class="step-number">5</div>
+                  <div class="step-content">
+                    <div class="step-title">Synthetisieren</div>
+                    <div class="step-desc">Lege den getrockneten Balo Pilz in den <strong>Synthesizer</strong>. Das Endprodukt ist fertiges <strong>Deathstick</strong> — bereit zum Verkauf.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lunar Gras -->
+            <div class="drug-item">
+              <div class="drug-header" onclick="toggleDrug(this)">
+                <div class="drug-header-left">
+                  <span class="drug-icon">🌿</span>
+                  <span class="drug-name">Lunar Gras</span>
+                </div>
+                <span class="drug-arrow">▼</span>
+              </div>
+              <div class="drug-steps">
+                <div class="step">
+                  <div class="step-number">1</div>
+                  <div class="step-content">
+                    <div class="step-title">Saatgut besorgen</div>
+                    <div class="step-desc">Gehe zum <strong>Farming Busch</strong> und hole dir <strong>Lunar Gras Saatgut</strong>.</div>
+                  </div>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step">
+                  <div class="step-number">2</div>
+                  <div class="step-content">
+                    <div class="step-title">Anpflanzen</div>
+                    <div class="step-desc">Lege das Saatgut ins <strong>Beet</strong> und lass es wachsen.</div>
+                  </div>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step">
+                  <div class="step-number">3</div>
+                  <div class="step-content">
+                    <div class="step-title">Ernten</div>
+                    <div class="step-desc">Ernte das gewachsene <strong>Lunar Gras</strong> aus dem Beet.</div>
+                  </div>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step">
+                  <div class="step-number">4</div>
+                  <div class="step-content">
+                    <div class="step-title">Trocknen</div>
+                    <div class="step-desc">Lege das Lunar Gras in die <strong>Trocknungsstation</strong>. Das Endprodukt ist <strong>Getrocknetes Lunar Gras</strong> — bereit zum Verkauf.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    <!-- REGELWERK TAB -->
+      <div class="panel-section" id="tab-regelwerk">
+        <div class="panel-section-header">
+          <div class="sec-label">Interner Bereich</div>
+          <h2 class="sec-title" style="margin-bottom:0">Regelwerk</h2>
+        </div>
+        <div class="rules-list">
+          <div class="rule-item">
+            <div class="rule-num">01</div>
+            <div class="rule-body">
+              <div class="rule-title">Loyalität geht vor</div>
+              <div class="rule-desc">Jedes Mitglied schuldet dem Kartell absolute Loyalität. Verrat an der Organisation oder ihren Mitgliedern wird nicht toleriert und hat sofortige Konsequenzen.</div>
+            </div>
+          </div>
+          <div class="rule-item">
+            <div class="rule-num">02</div>
+            <div class="rule-body">
+              <div class="rule-title">Stillschweigen ist Pflicht</div>
+              <div class="rule-desc">Interne Informationen, Operationen und Mitglieder dürfen unter keinen Umständen nach außen weitergegeben werden. Was im Kartell passiert, bleibt im Kartell.</div>
+            </div>
+          </div>
+          <div class="rule-item">
+            <div class="rule-num">03</div>
+            <div class="rule-body">
+              <div class="rule-title">Respekt gegenüber der Führung</div>
+              <div class="rule-desc">Anweisungen des Majordomus, des Unterlords und der Vollstrecker sind ohne Widerrede zu befolgen. Befehle der Führung haben höchste Priorität.</div>
+            </div>
+          </div>
+          <div class="rule-item">
+            <div class="rule-num">04</div>
+            <div class="rule-body">
+              <div class="rule-title">Keine internen Konflikte</div>
+              <div class="rule-desc">Streitigkeiten zwischen Mitgliedern werden intern und friedlich gelöst. Eigenmächtige Aktionen gegen Kartellmitglieder sind strengstens verboten.</div>
+            </div>
+          </div>
+          <div class="rule-item">
+            <div class="rule-num">05</div>
+            <div class="rule-body">
+              <div class="rule-title">Einnahmen werden geteilt</div>
+              <div class="rule-desc">Ein festgelegter Anteil aller Einnahmen aus Operationen fließt in die Kartellkasse. Wer für das Kartell arbeitet, trägt auch zu seinem Bestand bei.</div>
+            </div>
+          </div>
+          <div class="rule-item">
+            <div class="rule-num">06</div>
+            <div class="rule-body">
+              <div class="rule-title">Keine unnötigen Feinde</div>
+              <div class="rule-desc">Provokationen gegenüber anderen Fraktionen ohne Genehmigung der Führung sind verboten. Jeder Konflikt nach außen muss durch die Führung autorisiert sein.</div>
+            </div>
+          </div>
+          <div class="rule-item">
+            <div class="rule-num">07</div>
+            <div class="rule-body">
+              <div class="rule-title">Aktivität wird erwartet</div>
+              <div class="rule-desc">Mitglieder sind verpflichtet, regelmäßig aktiv zu sein und zum Kartell beizutragen. Längere Inaktivität ohne Ankündigung kann zum Ausschluss führen.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VERSCHLÜSSELER TAB -->
+      <div class="panel-section" id="tab-verschluesseler">
+        <div class="panel-section-header">
+          <div class="sec-label">Interner Bereich</div>
+          <h2 class="sec-title" style="margin-bottom:0">Verschlüsseler</h2>
+        </div>
+        <div class="enc-wrap">
+          <p class="enc-desc">Verschlüssele oder entschlüssele Nachrichten mit einem geheimen Schlüssel. Nur wer den Schlüssel kennt, kann die Nachricht lesen.</p>
+          <div class="enc-grid">
+            <div class="enc-col">
+              <label class="enc-label">Nachricht</label>
+              <textarea class="enc-textarea" id="enc-input" placeholder="Text hier eingeben..."></textarea>
+            </div>
+            <div class="enc-middle">
+              <input type="text" class="enc-key-input" id="enc-key" placeholder="Schlüssel (z.B. 'kartell')"/>
+              <button class="btn btn-primary enc-btn" onclick="encryptText()">🔒 Verschlüsseln</button>
+              <button class="btn btn-outline enc-btn" onclick="decryptText()">🔓 Entschlüsseln</button>
+            </div>
+            <div class="enc-col">
+              <label class="enc-label">Ergebnis</label>
+              <textarea class="enc-textarea" id="enc-output" placeholder="Ergebnis erscheint hier..." readonly></textarea>
+              <button class="btn btn-outline enc-copy" onclick="copyResult()">📋 Kopieren</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CRAFT LOG TAB -->
+      <div class="panel-section" id="tab-craft-log">
+        <div class="panel-section-header">
+          <div class="sec-label">Waffenschmied</div>
+          <h2 class="sec-title" style="margin-bottom:0">Craft Log</h2>
+        </div>
+        <div id="craft-log-list"></div>
+      </div>
+
+      <!-- MATERIAL TRACKER TAB -->
+      <div class="panel-section" id="tab-material-tracker">
+        <div class="panel-section-header">
+          <div class="sec-label">Waffenschmied</div>
+          <h2 class="sec-title" style="margin-bottom:0">Material Tracker</h2>
+        </div>
+        <p style="color:var(--dim);font-size:.92rem;margin-bottom:28px;">Trage deine aktuellen Materialien ein. Der Fortschrittsbalken zeigt, wie nah du am Craften bist.</p>
+
+        <!-- Weapon selector -->
+        <div class="tracker-weapon-tabs" id="tracker-tabs"></div>
+        <div id="tracker-content"></div>
+      </div>
+
+    </div>
   </div>
 </div>
 
@@ -527,6 +921,267 @@
     event.target.classList.add('active');
     document.getElementById('tab-' + name).classList.add('active');
   }
+
+  function toggleDrug(header) {
+    const item = header.parentElement;
+    item.classList.toggle('open');
+  }
+
+  // VERSCHLÜSSELER
+  function vigenere(text, key, encrypt) {
+    key = key.toLowerCase().replace(/[^a-z]/g, '') || 'key';
+    let result = ''; let ki = 0;
+    for(let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if(/[a-zA-Z]/.test(c)) {
+        const base = c >= 'a' ? 97 : 65;
+        const shift = key.charCodeAt(ki % key.length) - 97;
+        const code = encrypt
+          ? (c.charCodeAt(0) - base + shift) % 26
+          : (c.charCodeAt(0) - base - shift + 26) % 26;
+        result += String.fromCharCode(base + code);
+        ki++;
+      } else { result += c; }
+    }
+    return result;
+  }
+  function encryptText() {
+    const t = document.getElementById('enc-input').value;
+    const k = document.getElementById('enc-key').value;
+    document.getElementById('enc-output').value = vigenere(t, k, true);
+  }
+  function decryptText() {
+    const t = document.getElementById('enc-input').value;
+    const k = document.getElementById('enc-key').value;
+    document.getElementById('enc-output').value = vigenere(t, k, false);
+  }
+  function copyResult() {
+    const out = document.getElementById('enc-output');
+    navigator.clipboard.writeText(out.value).then(() => {
+      const btn = event.target;
+      btn.textContent = '✅ Kopiert!';
+      setTimeout(() => btn.textContent = '📋 Kopieren', 1500);
+    });
+  }
+
+  // MATERIAL TRACKER
+  const weapons = [
+    { name: 'NT-242', materials: [
+      { name: 'Tibanna Gas', required: 60 },
+      { name: 'Durastahl', required: 55 },
+      { name: 'Beskar', required: 45 },
+      { name: 'Einfaches Waffenbauteil', required: 25 },
+      { name: 'Fortgeschrittenes Waffenbauteil', required: 35 },
+      { name: 'Professionelles Waffenbauteil', required: 70 },
+    ]},
+    { name: 'JND-41 Shotgun', materials: [
+      { name: 'Tibanna Gas', required: 45 },
+      { name: 'Durastahl', required: 35 },
+      { name: 'Beskar', required: 20 },
+      { name: 'Einfaches Waffenbauteil', required: 20 },
+      { name: 'Fortgeschrittenes Waffenbauteil', required: 15 },
+      { name: 'Professionelles Waffenbauteil', required: 30 },
+    ]},
+    { name: 'BK-43', materials: [
+      { name: 'Tibanna Gas', required: 12 },
+      { name: 'Durastahl', required: 20 },
+      { name: 'Beskar', required: 5 },
+      { name: 'Einfaches Waffenbauteil', required: 10 },
+      { name: 'Fortgeschrittenes Waffenbauteil', required: 15 },
+      { name: 'Professionelles Waffenbauteil', required: 20 },
+    ]},
+    { name: 'M-45 LMG', materials: [
+      { name: 'Tibanna Gas', required: 32 },
+      { name: 'Durastahl', required: 50 },
+      { name: 'Beskar', required: 35 },
+      { name: 'Einfaches Waffenbauteil', required: 20 },
+      { name: 'Fortgeschrittenes Waffenbauteil', required: 30 },
+      { name: 'Professionelles Waffenbauteil', required: 55 },
+    ]},
+    { name: 'POWER-5', materials: [
+      { name: 'Tibanna Gas', required: 10 },
+      { name: 'Durastahl', required: 12 },
+      { name: 'Beskar', required: 3 },
+      { name: 'Einfaches Waffenbauteil', required: 5 },
+      { name: 'Fortgeschrittenes Waffenbauteil', required: 10 },
+      { name: 'Professionelles Waffenbauteil', required: 7 },
+    ]},
+  ];
+
+  let trackerState = {}; // { weaponIndex: { matIndex: value } }
+  let activeWeapon = 0;
+
+  // CRAFT LOG
+  let craftLog = [];
+  try {
+    const saved = localStorage.getItem('hk-craft-log');
+    if(saved) craftLog = JSON.parse(saved);
+  } catch(e) {}
+
+  function craftWeapon(wi) {
+    const w = weapons[wi];
+    const entry = {
+      weapon: w.name,
+      timestamp: new Date().toLocaleString('de-DE', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' })
+    };
+    craftLog.unshift(entry);
+    try { localStorage.setItem('hk-craft-log', JSON.stringify(craftLog)); } catch(e) {}
+    // Reset materials for this weapon
+    w.materials.forEach((m, j) => trackerState[wi][j] = 0);
+    try { localStorage.setItem('hk-tracker', JSON.stringify(trackerState)); } catch(e) {}
+    renderTracker(wi);
+    renderLog();
+    // Flash confirmation
+    const hint = document.querySelector('.tracker-craft-hint');
+    if(hint) { hint.textContent = '✅ Craft eingetragen!'; hint.style.color = '#2ecc71'; }
+  }
+
+  function renderLog() {
+    const el = document.getElementById('craft-log-list');
+    if(!el) return;
+    if(craftLog.length === 0) {
+      el.innerHTML = '<div class="log-empty">Noch keine Crafts eingetragen.</div>';
+      return;
+    }
+    // Count per weapon
+    const counts = {};
+    weapons.forEach(w => counts[w.name] = 0);
+    craftLog.forEach(e => { if(counts[e.weapon] !== undefined) counts[e.weapon]++; });
+
+    let statsHtml = '<div class="log-stats">';
+    weapons.forEach(w => {
+      statsHtml += `<div class="log-stat-item"><span class="log-stat-name">${w.name}</span><span class="log-stat-count">${counts[w.name]}x</span></div>`;
+    });
+    statsHtml += '</div>';
+
+    let entriesHtml = '<div class="log-entries">';
+    craftLog.forEach((e, i) => {
+      entriesHtml += `<div class="log-entry">
+        <div class="log-entry-left">
+          <span class="log-entry-icon">⚒</span>
+          <span class="log-entry-weapon">${e.weapon}</span>
+        </div>
+        <div class="log-entry-right">
+          <span class="log-entry-time">${e.timestamp}</span>
+          <button class="log-delete" onclick="deleteLog(${i})">✕</button>
+        </div>
+      </div>`;
+    });
+    entriesHtml += '</div>';
+    el.innerHTML = statsHtml + entriesHtml;
+  }
+
+  function deleteLog(i) {
+    craftLog.splice(i, 1);
+    try { localStorage.setItem('hk-craft-log', JSON.stringify(craftLog)); } catch(e) {}
+    renderLog();
+  }
+
+  function initTracker() {
+    const tabsEl = document.getElementById('tracker-tabs');
+    // Load saved state from localStorage
+    try {
+      const saved = localStorage.getItem('hk-tracker');
+      if(saved) trackerState = JSON.parse(saved);
+    } catch(e) {}
+
+    weapons.forEach((w, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'tracker-weapon-btn' + (i === 0 ? ' active' : '');
+      btn.textContent = w.name;
+      btn.onclick = () => selectWeapon(i);
+      tabsEl.appendChild(btn);
+      if(!trackerState[i]) {
+        trackerState[i] = {};
+        w.materials.forEach((m, j) => trackerState[i][j] = 0);
+      }
+    });
+    renderTracker(0);
+  }
+
+  function selectWeapon(i) {
+    activeWeapon = i;
+    document.querySelectorAll('.tracker-weapon-btn').forEach((b, j) => b.classList.toggle('active', i === j));
+    renderTracker(i);
+  }
+
+  function renderTracker(i) {
+    const w = weapons[i];
+    const state = trackerState[i];
+    let allDone = true;
+    let html = `<div class="tracker-card"><div class="tracker-card-title">${w.name}</div>`;
+    w.materials.forEach((m, j) => {
+      const val = state[j] || 0;
+      const pct = Math.min(100, Math.round((val / m.required) * 100));
+      const done = val >= m.required;
+      if(!done) allDone = false;
+      html += `
+        <div class="tracker-material">
+          <div class="tracker-mat-header">
+            <span class="tracker-mat-name">${m.name}</span>
+            <span class="tracker-mat-count">${val} / ${m.required}</span>
+          </div>
+          <div class="tracker-bar-bg"><div class="tracker-bar-fill ${done ? 'complete' : ''}" style="width:${pct}%"></div></div>
+          <div class="tracker-input-row">
+            <input class="tracker-slider" type="range" min="0" max="${m.required}" value="${val}" oninput="updateMat(${i},${j},this.value)" />
+            <input class="tracker-input" type="number" min="0" max="${m.required}" value="${val}" oninput="updateMat(${i},${j},this.value)" />
+            <span class="tracker-input-label">/ ${m.required} (${pct}%)</span>
+          </div>
+        </div>`;
+    });
+    html += `<div class="tracker-summary">
+      <span class="tracker-summary-text">${allDone ? '✅ Alle Materialien vorhanden — bereit zum Craften!' : 'Noch nicht genug Materialien.'}</span>
+      ${allDone ? `<button class="tracker-craft-btn" onclick="craftWeapon(${i})">⚒ CRAFTEN</button>` : `<span class="tracker-ready no">✗ Nicht Craftbar</span>`}
+    </div>
+    ${allDone ? `<div class="tracker-craft-hint">Klicke auf "CRAFTEN" um den Craft zu bestätigen und ins Log einzutragen.</div>` : ''}
+    </div>`;
+    document.getElementById('tracker-content').innerHTML = html;
+  }
+
+  function updateMat(wi, mi, val) {
+    const num = Math.max(0, parseInt(val) || 0);
+    trackerState[wi][mi] = num;
+    try { localStorage.setItem('hk-tracker', JSON.stringify(trackerState)); } catch(e) {}
+
+    // Sync slider + input without re-render
+    const rows = document.querySelectorAll(`#tracker-content .tracker-material`);
+    if(rows[mi]) {
+      const slider = rows[mi].querySelector('.tracker-slider');
+      const input = rows[mi].querySelector('.tracker-input');
+      if(slider && slider !== document.activeElement) slider.value = num;
+      if(input && input !== document.activeElement) input.value = num;
+
+      // Update bar
+      const required = weapons[wi].materials[mi].required;
+      const pct = Math.min(100, Math.round((num / required) * 100));
+      const bar = rows[mi].querySelector('.tracker-bar-fill');
+      const count = rows[mi].querySelector('.tracker-mat-count');
+      const label = rows[mi].querySelector('.tracker-input-label');
+      if(bar) { bar.style.width = pct + '%'; bar.className = 'tracker-bar-fill' + (num >= required ? ' complete' : ''); }
+      if(count) count.textContent = num + ' / ' + required;
+      if(label) label.textContent = '/ ' + required + ' (' + pct + '%)';
+    }
+
+    // Check if all done and update summary
+    const w = weapons[wi];
+    const allDone = w.materials.every((m, j) => (trackerState[wi][j] || 0) >= m.required);
+    const summary = document.querySelector('#tracker-content .tracker-summary');
+    if(summary) {
+      summary.querySelector('.tracker-summary-text').textContent = allDone ? '✅ Alle Materialien vorhanden — bereit zum Craften!' : 'Noch nicht genug Materialien.';
+      const right = summary.querySelector('.tracker-ready, .tracker-craft-btn');
+      if(right) right.outerHTML = allDone
+        ? `<button class="tracker-craft-btn" onclick="craftWeapon(${wi})">⚒ CRAFTEN</button>`
+        : `<span class="tracker-ready no">✗ Nicht Craftbar</span>`;
+    }
+    const hint = document.querySelector('#tracker-content .tracker-craft-hint');
+    if(allDone && !hint) {
+      const sum = document.querySelector('#tracker-content .tracker-summary');
+      if(sum) { const d = document.createElement('div'); d.className='tracker-craft-hint'; d.textContent='Klicke auf "CRAFTEN" um den Craft zu bestätigen und ins Log einzutragen.'; sum.after(d); }
+    } else if(!allDone && hint) hint.remove();
+  }
+
+  initTracker();
+  renderLog();
 
   function switchSubtab(name) {
     const parent = event.target.closest('.panel-section');
