@@ -37,37 +37,21 @@
     .nav-btn-panel { border-color: var(--accent); color: var(--accent2); }
     .nav-btn-panel:hover { background: var(--accent); color: #fff; box-shadow: 0 0 18px var(--glow); }
 
-    /* PAGES */
-    .page { display: none; }
-    .page.active { display: block; }
-
     /* TICKER */
     .ticker-wrap {
       position: fixed; top: 64px; left: 0; right: 0; z-index: 99;
       background: rgba(192,57,43,0.12); border-bottom: 1px solid rgba(192,57,43,0.12);
       overflow: hidden; height: 36px; display: flex; align-items: stretch;
     }
-    .ticker-label {
-      font-family: 'Orbitron', sans-serif; font-size: .62rem; font-weight: 700;
-      letter-spacing: .2em; color: #fff; background: var(--accent);
-      padding: 0 18px; display: flex; align-items: center;
-      white-space: nowrap; flex-shrink: 0; text-transform: uppercase;
-      line-height: 1;
-    }
-    .ticker-track {
-      display: flex; align-items: center; white-space: nowrap;
-      animation: ticker-scroll 30s linear infinite;
-    }
+    .ticker-track { display: flex; align-items: center; white-space: nowrap; animation: ticker-scroll 30s linear infinite; }
     .ticker-track:hover { animation-play-state: paused; }
-    .ticker-msg {
-      font-size: .78rem; letter-spacing: .1em; color: var(--text);
-      padding: 0 48px; text-transform: uppercase;
-    }
+    .ticker-msg { font-size: .78rem; letter-spacing: .1em; color: var(--text); padding: 0 48px; text-transform: uppercase; }
     .ticker-msg span { color: var(--accent2); margin-right: 8px; }
-    @keyframes ticker-scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
+    @keyframes ticker-scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+    /* PAGES */
+    .page { display: none; }
+    .page.active { display: block; }
 
     /* HERO */
     .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; padding: 140px 32px 80px; }
@@ -79,7 +63,7 @@
     .hero-title span { color: var(--accent2); display: block; }
     .hero-div { width: 80px; height: 2px; margin: 28px auto; background: linear-gradient(90deg, transparent, var(--accent), transparent); animation: fadeUp .8s .2s ease both; }
     .hero-sub { font-size: 1.05rem; color: var(--dim); letter-spacing: .08em; max-width: 460px; margin: 0 auto 40px; animation: fadeUp .8s .3s ease both; }
-    .hero-cta { display: inline-flex; gap: 16px; animation: fadeUp .8s .4s ease both; }
+    .hero-cta { display: inline-flex; gap: 16px; flex-wrap: wrap; justify-content: center; animation: fadeUp .8s .4s ease both; }
     .btn { font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: .85rem; letter-spacing: .18em; text-transform: uppercase; text-decoration: none; padding: 12px 32px; border: 1px solid; transition: all .2s; cursor: pointer; }
     .btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
     .btn-primary:hover { background: var(--accent2); border-color: var(--accent2); box-shadow: 0 0 24px var(--glow); }
@@ -102,49 +86,28 @@
     .stat-lbl { font-size: .78rem; letter-spacing: .15em; text-transform: uppercase; color: var(--dim); margin-top: 4px; }
 
     /* LEADERS PYRAMID */
-    .leaders-pyramid { display: flex; flex-direction: column; align-items: center; width: 100%; gap: 0; }
+    .leaders-pyramid { display: flex; flex-direction: column; align-items: center; width: 100%; }
     .leaders-row { display: flex; justify-content: center; gap: 24px; }
-    .leaders-sep {
-      width: 50%; height: 1px; margin: 36px auto;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      opacity: 0.45;
-    }
+    .leaders-sep { width: 2px; height: 40px; background: linear-gradient(to bottom, var(--accent), transparent); opacity: 0.4; margin: 0 auto; }
 
-    .leader-card {
-      background: var(--surface); border: 1px solid var(--border);
-      padding: 32px 24px 28px; position: relative; transition: all .35s;
-      overflow: hidden; text-align: center;
-    }
+    .leader-card { background: var(--surface); border: 1px solid var(--border); padding: 32px 24px 28px; position: relative; transition: all .35s; overflow: hidden; text-align: center; }
     .leader-card::before { content:''; position:absolute; top:0;left:0;right:0; height:2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity:0; transition: opacity .3s; }
     .leader-card:hover { background: var(--surface2); border-color: rgba(192,57,43,.4); transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,.6), 0 0 50px var(--glow); }
     .leader-card:hover::before { opacity: 1; }
+    .tier-1 .leader-card { width: 280px; }
+    .tier-2 .leader-card { width: 260px; }
+    .tier-3 .leader-card { width: 230px; }
 
-    /* tier sizes */
-    .tier-1 .leader-card { width: 340px; }
-    .tier-2 .leader-card { width: 310px; }
-    .tier-3 .leader-card { width: 270px; }
-
-    .leader-avatar {
-      width: 160px; height: 160px; border-radius: 50%;
-      background: linear-gradient(145deg, #2a0a0a, #4a1515);
-      border: 3px solid var(--accent);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 2rem;
-      color: var(--accent2); margin: 0 auto 24px;
-      box-shadow: 0 0 30px var(--glow), 0 0 60px var(--glow);
-      position: relative; overflow: hidden;
-    }
-    .tier-1 .leader-avatar { width: 190px; height: 190px; font-size: 2.4rem; }
-    .tier-2 .leader-avatar { width: 170px; height: 170px; font-size: 2.1rem; }
-    .tier-3 .leader-avatar { width: 140px; height: 140px; font-size: 1.7rem; }
-
+    .leader-avatar { width: 150px; height: 150px; border-radius: 50%; background: linear-gradient(145deg, #2a0a0a, #4a1515); border: 3px solid var(--accent); display: flex; align-items: center; justify-content: center; font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 2rem; color: var(--accent2); margin: 0 auto 20px; box-shadow: 0 0 30px var(--glow), 0 0 60px var(--glow); position: relative; overflow: hidden; }
+    .tier-1 .leader-avatar { width: 170px; height: 170px; }
+    .tier-2 .leader-avatar { width: 150px; height: 150px; }
+    .tier-3 .leader-avatar { width: 120px; height: 120px; font-size: 1.6rem; }
     .leader-avatar::after { content:''; position:absolute; inset:-10px; border-radius:50%; border: 1px solid rgba(192,57,43,.25); pointer-events:none; }
     .leader-avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; border-radius: 50%; z-index: 1; }
-
     .leader-name { font-family: 'Orbitron', sans-serif; font-size: .9rem; font-weight: 700; color: var(--bright); letter-spacing: .06em; margin-bottom: 10px; line-height: 1.4; }
     .tier-1 .leader-name { font-size: 1rem; }
-    .leader-rank { display: inline-block; font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--accent2); border: 1px solid var(--accent); padding: 4px 14px; margin-bottom: 16px; background: rgba(192,57,43,.08); }
-    .leader-bio { color: var(--dim); font-size: .88rem; line-height: 1.6; }
+    .leader-rank { display: inline-block; font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--accent2); border: 1px solid var(--accent); padding: 4px 14px; margin-bottom: 12px; background: rgba(192,57,43,.08); }
+    .leader-bio { color: var(--dim); font-size: .85rem; line-height: 1.6; }
     .tier-3 .leader-bio { display: none; }
 
     /* JOBS */
@@ -157,6 +120,46 @@
     .job-desc { color: var(--dim); font-size: .97rem; line-height: 1.6; }
     .job-icon { font-size: 1.6rem; opacity: .45; transition: opacity .2s; justify-self: end; }
     .job-row:hover .job-icon { opacity: 1; }
+
+    /* HIERARCHY */
+    .hierarchy-list { max-width: 750px; }
+    .hier-item { display: flex; align-items: center; gap: 24px; background: var(--surface); border: 1px solid var(--border); padding: 20px 28px; transition: all .25s; position: relative; overflow: hidden; }
+    .hier-item::before { content:''; position:absolute; left:0;top:0;bottom:0; width:3px; transition: background .25s; }
+    .tier-top::before { background: #e8b84b; }
+    .tier-high::before { background: var(--accent); }
+    .tier-mid::before { background: #7f8c8d; }
+    .tier-low::before { background: #4a5568; }
+    .tier-new::before { background: #2d3748; }
+    .hier-item:hover { background: var(--surface2); transform: translateX(4px); }
+    .hier-rank-num { font-family: 'Orbitron', sans-serif; font-size: .8rem; font-weight: 700; color: var(--dim); width: 28px; text-align: center; flex-shrink: 0; }
+    .tier-top .hier-rank-num { color: #e8b84b; }
+    .hier-info { flex: 1; }
+    .hier-name { font-family: 'Orbitron', sans-serif; font-size: .88rem; font-weight: 700; color: var(--bright); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 4px; }
+    .hier-desc { font-size: .85rem; color: var(--dim); line-height: 1.5; }
+    .hier-badge { font-size: .65rem; letter-spacing: .18em; text-transform: uppercase; padding: 4px 12px; border: 1px solid; flex-shrink: 0; }
+    .hier-badge.top { color: #e8b84b; border-color: #e8b84b; background: rgba(232,184,75,.08); }
+    .hier-badge.high { color: var(--accent2); border-color: var(--accent); background: rgba(192,57,43,.08); }
+    .hier-badge.mid { color: #95a5a6; border-color: #7f8c8d; background: rgba(127,140,141,.08); }
+    .hier-badge.low { color: #718096; border-color: #4a5568; background: rgba(74,85,104,.08); }
+    .hier-badge.new { color: var(--dim); border-color: #2d3748; background: rgba(45,55,72,.08); }
+    .hier-connector { width: 2px; height: 12px; background: var(--border); margin-left: 51px; }
+
+    /* RECRUITMENT */
+    .recruit-grid { display: grid; grid-template-columns: 1fr 300px; gap: 48px; align-items: start; }
+    .recruit-text { color: var(--dim); font-size: 1rem; line-height: 1.7; margin-bottom: 16px; }
+    .recruit-text strong { color: var(--text); }
+    .recruit-steps { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
+    .recruit-step { display: flex; align-items: center; gap: 16px; }
+    .recruit-step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #fff; font-family: 'Orbitron', sans-serif; font-size: .78rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 10px var(--glow); }
+    .recruit-step-text { font-size: .95rem; color: var(--dim); }
+    .recruit-step-text strong { color: var(--text); }
+    .recruit-card { background: var(--surface); border: 1px solid var(--border); padding: 36px 28px; text-align: center; position: relative; overflow: hidden; }
+    .recruit-card::before { content:''; position:absolute; top:0;left:0;right:0; height:2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
+    .recruit-card-label { font-size: .68rem; letter-spacing: .3em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .recruit-card-icon { font-size: 2.4rem; margin-bottom: 12px; }
+    .recruit-card-title { font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 700; color: var(--bright); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
+    .recruit-card-sub { font-size: .88rem; color: var(--accent2); margin-bottom: 16px; letter-spacing: .04em; }
+    .recruit-card-hint { font-size: .8rem; color: var(--dim); line-height: 1.5; }
 
     /* FOOTER */
     footer { border-top: 1px solid var(--border); padding: 40px 0; position: relative; z-index: 2; text-align: center; }
@@ -179,56 +182,29 @@
     .modal-close-x { position: absolute; top: 14px; right: 16px; background: none; border: none; color: var(--dim); font-size: 1.2rem; cursor: pointer; transition: color .2s; }
     .modal-close-x:hover { color: var(--accent2); }
 
-    /* PANEL PAGE */
-    .panel-wrap {
-      display: flex; min-height: calc(100vh - 100px); margin-top: 100px;
-      position: relative; z-index: 2; width: 100%; box-sizing: border-box;
-    }
-    .panel-sidebar {
-      width: 220px; min-width: 220px; background: var(--surface);
-      border-right: 1px solid var(--border); padding: 32px 0; flex-shrink: 0;
-      position: sticky; top: 100px; height: calc(100vh - 100px); overflow-y: auto;
-      align-self: flex-start;
-    }
-    .panel-sidebar-title {
-      font-family: 'Orbitron', sans-serif; font-size: .75rem; font-weight: 700;
-      letter-spacing: .3em; text-transform: uppercase; color: var(--accent);
-      padding: 0 24px 20px; border-bottom: 1px solid var(--border); margin-bottom: 12px;
-    }
-    .panel-tab {
-      display: block; width: 100%; text-align: left; padding: 12px 24px;
-      background: none; border: none; border-left: 3px solid transparent;
-      color: var(--dim); font-family: 'Rajdhani', sans-serif; font-weight: 600;
-      font-size: .88rem; letter-spacing: .08em; cursor: pointer; transition: all .2s;
-    }
+    /* PANEL */
+    .panel-wrap { display: flex; min-height: 100vh; padding-top: 100px; position: relative; z-index: 2; }
+    .panel-sidebar { width: 220px; min-height: calc(100vh - 100px); background: var(--surface); border-right: 1px solid var(--border); padding: 32px 0; flex-shrink: 0; position: sticky; top: 100px; height: calc(100vh - 100px); overflow-y: auto; }
+    .panel-sidebar-title { font-family: 'Orbitron', sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--accent); padding: 0 24px 20px; border-bottom: 1px solid var(--border); margin-bottom: 12px; }
+    .panel-tab { display: block; width: 100%; text-align: left; padding: 12px 24px; background: none; border: none; border-left: 3px solid transparent; color: var(--dim); font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: .88rem; letter-spacing: .08em; cursor: pointer; transition: all .2s; }
     .panel-tab:hover { color: var(--accent2); background: var(--surface2); }
     .panel-tab.active { color: var(--accent2); border-left-color: var(--accent); background: var(--surface2); }
-
     .panel-main { flex: 1; min-width: 0; padding: 48px; overflow-y: auto; }
     .panel-section { display: none; }
     .panel-section.active { display: block; }
     .panel-section-header { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
 
-    /* Sub-tabs */
+    /* SUB-TABS */
     .subtab-bar { display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap; }
-    .subtab {
-      background: var(--surface); border: 1px solid var(--border); color: var(--dim);
-      font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: .82rem;
-      letter-spacing: .1em; text-transform: uppercase; padding: 8px 20px;
-      cursor: pointer; transition: all .2s;
-    }
+    .subtab { background: var(--surface); border: 1px solid var(--border); color: var(--dim); font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: .82rem; letter-spacing: .1em; text-transform: uppercase; padding: 8px 20px; cursor: pointer; transition: all .2s; }
     .subtab:hover { border-color: var(--accent); color: var(--accent2); }
     .subtab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
     .subtab-content { display: none; }
     .subtab-content.active { display: block; }
 
-    /* Weapon cards */
+    /* WEAPON CARDS */
     .weapon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
-    .weapon-card {
-      background: var(--surface); border: 1px solid var(--border);
-      padding: 28px 24px; text-align: center; position: relative;
-      transition: all .3s; overflow: hidden;
-    }
+    .weapon-card { background: var(--surface); border: 1px solid var(--border); padding: 28px 24px; text-align: center; position: relative; transition: all .3s; overflow: hidden; }
     .weapon-card::before { content:''; position:absolute; top:0;left:0;right:0; height:2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity:0; transition:opacity .3s; }
     .weapon-card:hover { background: var(--surface2); border-color: rgba(192,57,43,.35); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.5), 0 0 30px var(--glow); }
     .weapon-card:hover::before { opacity: 1; }
@@ -242,10 +218,7 @@
     .drug-list { display: flex; flex-direction: column; gap: 12px; }
     .drug-item { background: var(--surface); border: 1px solid var(--border); overflow: hidden; transition: border-color .3s; }
     .drug-item.open { border-color: rgba(192,57,43,.4); }
-    .drug-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 28px; cursor: pointer; transition: background .2s; user-select: none;
-    }
+    .drug-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 28px; cursor: pointer; transition: background .2s; user-select: none; }
     .drug-header:hover { background: var(--surface2); }
     .drug-header-left { display: flex; align-items: center; gap: 14px; }
     .drug-icon { font-size: 1.4rem; }
@@ -255,12 +228,7 @@
     .drug-steps { display: none; padding: 8px 28px 28px; border-top: 1px solid var(--border); }
     .drug-item.open .drug-steps { display: block; }
     .step { display: flex; gap: 20px; align-items: flex-start; padding: 16px 0; }
-    .step-number {
-      width: 36px; height: 36px; border-radius: 50%; background: var(--accent);
-      color: #fff; font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: .85rem;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-      box-shadow: 0 0 12px var(--glow);
-    }
+    .step-number { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); color: #fff; font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: .85rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 12px var(--glow); }
     .step-content { flex: 1; padding-top: 6px; }
     .step-title { font-family: 'Orbitron', sans-serif; font-size: .82rem; font-weight: 700; color: var(--accent2); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 8px; }
     .step-desc { color: var(--dim); font-size: .92rem; line-height: 1.6; }
@@ -277,6 +245,18 @@
     .rule-body { padding: 24px 28px; }
     .rule-title { font-family: 'Orbitron', sans-serif; font-size: .85rem; font-weight: 700; color: var(--bright); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 8px; }
     .rule-desc { color: var(--dim); font-size: .92rem; line-height: 1.6; }
+
+    /* ENC LOCK */
+    .enc-lock-screen { max-width: 360px; margin: 40px auto; text-align: center; background: var(--surface); border: 1px solid var(--border); padding: 48px 40px; position: relative; }
+    .enc-lock-screen::before { content:''; position:absolute; top:0;left:0;right:0; height:2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
+    .enc-lock-icon { font-size: 2.4rem; margin-bottom: 16px; }
+    .enc-lock-title { font-family: 'Orbitron', sans-serif; font-size: .95rem; font-weight: 700; color: var(--bright); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; }
+    .enc-lock-sub { font-size: .88rem; color: var(--dim); margin-bottom: 28px; line-height: 1.5; }
+    .enc-lock-input { width: 100%; background: var(--bg); border: 1px solid var(--border); color: var(--bright); font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; letter-spacing: .4em; text-align: center; padding: 12px 16px; outline: none; transition: border-color .2s; margin-bottom: 12px; display: block; }
+    .enc-lock-input:focus { border-color: var(--accent); box-shadow: 0 0 12px var(--glow); }
+    .enc-lock-error { font-size: .8rem; color: var(--accent2); letter-spacing: .08em; min-height: 20px; margin-bottom: 16px; }
+    .enc-lock-btn { width: 100%; font-size: .85rem; padding: 12px; }
+
     /* VERSCHLÜSSELER */
     .enc-wrap { max-width: 900px; }
     .enc-desc { color: var(--dim); font-size: .95rem; margin-bottom: 28px; line-height: 1.6; }
@@ -290,7 +270,6 @@
     .enc-key-input:focus { border-color: var(--accent); }
     .enc-btn { font-size: .78rem; padding: 10px 16px; text-align: center; }
     .enc-copy { font-size: .78rem; padding: 8px 14px; margin-top: 4px; }
-    @media(max-width:768px){ .enc-grid{grid-template-columns:1fr} }
 
     /* CRAFT LOG */
     .log-empty { color: var(--dim); font-size: .92rem; padding: 24px 0; }
@@ -309,40 +288,9 @@
     .log-delete { background: none; border: none; color: var(--dim); cursor: pointer; font-size: .9rem; transition: color .2s; padding: 2px 6px; }
     .log-delete:hover { color: var(--accent2); }
 
-    /* ENC LOCK SCREEN */
-    .enc-lock-screen {
-      max-width: 360px; margin: 40px auto; text-align: center;
-      background: var(--surface); border: 1px solid var(--border);
-      padding: 48px 40px; position: relative;
-    }
-    .enc-lock-screen::before {
-      content:''; position:absolute; top:0;left:0;right:0; height:2px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    }
-    .enc-lock-icon { font-size: 2.4rem; margin-bottom: 16px; }
-    .enc-lock-title {
-      font-family: 'Orbitron', sans-serif; font-size: .95rem; font-weight: 700;
-      color: var(--bright); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px;
-    }
-    .enc-lock-sub { font-size: .88rem; color: var(--dim); margin-bottom: 28px; line-height: 1.5; }
-    .enc-lock-input {
-      width: 100%; background: var(--bg); border: 1px solid var(--border);
-      color: var(--bright); font-family: 'Rajdhani', sans-serif; font-size: 1.2rem;
-      letter-spacing: .4em; text-align: center; padding: 12px 16px; outline: none;
-      transition: border-color .2s; margin-bottom: 12px; display: block;
-    }
-    .enc-lock-input:focus { border-color: var(--accent); box-shadow: 0 0 12px var(--glow); }
-    .enc-lock-error { font-size: .8rem; color: var(--accent2); letter-spacing: .08em; min-height: 20px; margin-bottom: 16px; }
-    .enc-lock-btn { width: 100%; font-size: .85rem; padding: 12px; }
-
     /* MATERIAL TRACKER */
     .tracker-weapon-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
-    .tracker-weapon-btn {
-      font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: .82rem;
-      letter-spacing: .1em; text-transform: uppercase; padding: 8px 20px;
-      background: var(--surface); border: 1px solid var(--border); color: var(--dim);
-      cursor: pointer; transition: all .2s;
-    }
+    .tracker-weapon-btn { font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: .82rem; letter-spacing: .1em; text-transform: uppercase; padding: 8px 20px; background: var(--surface); border: 1px solid var(--border); color: var(--dim); cursor: pointer; transition: all .2s; }
     .tracker-weapon-btn:hover { border-color: var(--accent); color: var(--accent2); }
     .tracker-weapon-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
     .tracker-card { background: var(--surface); border: 1px solid var(--border); padding: 32px; max-width: 700px; }
@@ -355,111 +303,24 @@
     .tracker-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 2px; transition: width .4s ease; }
     .tracker-bar-fill.complete { background: linear-gradient(90deg, #27ae60, #2ecc71); }
     .tracker-input-row { display: flex; align-items: center; gap: 10px; }
-    .tracker-slider {
-      flex: 1; -webkit-appearance: none; appearance: none; height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--surface2));
-      border-radius: 2px; outline: none; cursor: pointer; transition: height .2s;
-    }
+    .tracker-slider { flex: 1; -webkit-appearance: none; appearance: none; height: 3px; background: linear-gradient(90deg, var(--accent), var(--surface2)); border-radius: 2px; outline: none; cursor: pointer; transition: height .2s; }
     .tracker-slider:hover { height: 5px; }
-    .tracker-slider::-webkit-slider-thumb {
-      -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%;
-      background: #fff; cursor: grab; border: 2px solid var(--accent);
-      box-shadow: 0 0 8px var(--glow), 0 0 2px rgba(0,0,0,.5);
-      transition: transform .15s, box-shadow .15s;
-    }
+    .tracker-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%; background: #fff; cursor: grab; border: 2px solid var(--accent); box-shadow: 0 0 8px var(--glow), 0 0 2px rgba(0,0,0,.5); transition: transform .15s, box-shadow .15s; }
     .tracker-slider::-webkit-slider-thumb:active { cursor: grabbing; transform: scale(1.3); box-shadow: 0 0 16px var(--glow); }
-    .tracker-slider::-moz-range-thumb {
-      width: 14px; height: 14px; border-radius: 50%;
-      background: #fff; cursor: grab; border: 2px solid var(--accent);
-      box-shadow: 0 0 8px var(--glow);
-    }
-    .tracker-input {
-      width: 90px; background: var(--bg); border: 1px solid var(--border);
-      color: var(--bright); font-family: 'Rajdhani', sans-serif; font-size: .9rem;
-      padding: 6px 10px; outline: none; transition: border-color .2s; text-align: center;
-    }
+    .tracker-slider::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: #fff; cursor: grab; border: 2px solid var(--accent); box-shadow: 0 0 8px var(--glow); }
+    .tracker-input { width: 70px; background: var(--bg); border: 1px solid var(--border); color: var(--bright); font-family: 'Rajdhani', sans-serif; font-size: .9rem; padding: 6px 10px; outline: none; transition: border-color .2s; text-align: center; }
     .tracker-input:focus { border-color: var(--accent); }
-    .tracker-input-label { font-size: .78rem; color: var(--dim); letter-spacing: .08em; }
-    .tracker-summary {
-      margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
-    }
+    .tracker-input-label { font-size: .78rem; color: var(--dim); letter-spacing: .08em; white-space: nowrap; }
+    .tracker-summary { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
     .tracker-summary-text { font-size: .88rem; color: var(--dim); }
-    .tracker-ready {
-      font-family: 'Orbitron', sans-serif; font-size: .8rem; font-weight: 700;
-      letter-spacing: .12em; text-transform: uppercase; padding: 8px 20px; border: 1px solid;
-    }
-    .tracker-ready.yes { color: #2ecc71; border-color: #27ae60; background: rgba(39,174,96,.1); }
+    .tracker-ready { font-family: 'Orbitron', sans-serif; font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 8px 20px; border: 1px solid; }
     .tracker-ready.no { color: var(--accent2); border-color: var(--accent); background: rgba(192,57,43,.1); }
-    .tracker-craft-btn {
-      font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: .82rem;
-      letter-spacing: .18em; text-transform: uppercase; padding: 10px 28px;
-      background: linear-gradient(135deg, #27ae60, #2ecc71); border: none; color: #fff;
-      cursor: pointer; transition: all .2s; animation: pulse-green 1.5s infinite;
-    }
+    .tracker-craft-btn { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: .82rem; letter-spacing: .18em; text-transform: uppercase; padding: 10px 28px; background: linear-gradient(135deg, #27ae60, #2ecc71); border: none; color: #fff; cursor: pointer; transition: all .2s; animation: pulse-green 1.5s infinite; }
     .tracker-craft-btn:hover { transform: scale(1.04); box-shadow: 0 0 20px rgba(46,204,113,.4); }
     .tracker-craft-hint { font-size: .78rem; color: #2ecc71; letter-spacing: .08em; margin-top: 10px; opacity: .8; }
     @keyframes pulse-green { 0%,100%{box-shadow:0 0 0 0 rgba(46,204,113,.4)} 50%{box-shadow:0 0 12px 4px rgba(46,204,113,.2)} }
 
-    /* HIERARCHY */
-    .hierarchy-list { max-width: 750px; }
-    .hier-item {
-      display: flex; align-items: center; gap: 24px;
-      background: var(--surface); border: 1px solid var(--border);
-      padding: 20px 28px; transition: all .25s; position: relative; overflow: hidden;
-    }
-    .hier-item::before { content:''; position:absolute; left:0;top:0;bottom:0; width:3px; transition: background .25s; }
-    .tier-top::before { background: #e8b84b; }
-    .tier-high::before { background: var(--accent); }
-    .tier-mid::before { background: #7f8c8d; }
-    .tier-low::before { background: #4a5568; }
-    .tier-new::before { background: #2d3748; }
-    .hier-item:hover { background: var(--surface2); transform: translateX(4px); }
-    .hier-rank-num {
-      font-family: 'Orbitron', sans-serif; font-size: .8rem; font-weight: 700;
-      color: var(--dim); width: 28px; text-align: center; flex-shrink: 0;
-    }
-    .tier-top .hier-rank-num { color: #e8b84b; }
-    .hier-info { flex: 1; }
-    .hier-name { font-family: 'Orbitron', sans-serif; font-size: .88rem; font-weight: 700; color: var(--bright); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 4px; }
-    .hier-desc { font-size: .85rem; color: var(--dim); line-height: 1.5; }
-    .hier-badge {
-      font-size: .65rem; letter-spacing: .18em; text-transform: uppercase;
-      padding: 4px 12px; border: 1px solid; flex-shrink: 0;
-    }
-    .hier-badge.top { color: #e8b84b; border-color: #e8b84b; background: rgba(232,184,75,.08); }
-    .hier-badge.high { color: var(--accent2); border-color: var(--accent); background: rgba(192,57,43,.08); }
-    .hier-badge.mid { color: #95a5a6; border-color: #7f8c8d; background: rgba(127,140,141,.08); }
-    .hier-badge.low { color: #718096; border-color: #4a5568; background: rgba(74,85,104,.08); }
-    .hier-badge.new { color: var(--dim); border-color: #2d3748; background: rgba(45,55,72,.08); }
-    .hier-connector { width: 2px; height: 12px; background: var(--border); margin-left: 51px; }
-
-    /* RECRUITMENT */
-    .recruit-grid { display: grid; grid-template-columns: 1fr 300px; gap: 48px; align-items: start; }
-    .recruit-text { color: var(--dim); font-size: 1rem; line-height: 1.7; margin-bottom: 16px; }
-    .recruit-text strong { color: var(--text); }
-    .recruit-steps { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
-    .recruit-step { display: flex; align-items: center; gap: 16px; }
-    .recruit-step-num {
-      width: 32px; height: 32px; border-radius: 50%; background: var(--accent);
-      color: #fff; font-family: 'Orbitron', sans-serif; font-size: .78rem; font-weight: 700;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-      box-shadow: 0 0 10px var(--glow);
-    }
-    .recruit-step-text { font-size: .95rem; color: var(--dim); }
-    .recruit-step-text strong { color: var(--text); }
-    .recruit-card {
-      background: var(--surface); border: 1px solid var(--border);
-      padding: 36px 28px; text-align: center; position: relative; overflow: hidden;
-    }
-    .recruit-card::before { content:''; position:absolute; top:0;left:0;right:0; height:2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
-    .recruit-card-label { font-size: .68rem; letter-spacing: .3em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
-    .recruit-card-icon { font-size: 2.4rem; margin-bottom: 12px; }
-    .recruit-card-title { font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 700; color: var(--bright); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
-    .recruit-card-sub { font-size: .88rem; color: var(--accent2); margin-bottom: 16px; letter-spacing: .04em; }
-    .recruit-card-hint { font-size: .8rem; color: var(--dim); line-height: 1.5; }
-    @media(max-width:768px){ .recruit-grid{grid-template-columns:1fr} }
-
+    /* ANIMATIONS */
     @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
     @keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)} 40%{transform:translateX(8px)} 60%{transform:translateX(-6px)} 80%{transform:translateX(6px)} }
     .reveal { opacity:0; transform:translateY(30px); transition: opacity .7s ease, transform .7s ease; }
@@ -471,13 +332,28 @@
       .job-icon{display:none}
       .container{padding:0 20px}
       .leaders-row{flex-wrap:wrap}
-      .tier-1 .leader-card, .tier-2 .leader-card, .tier-3 .leader-card { width: 200px; }
+      .recruit-grid{grid-template-columns:1fr}
+      .enc-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
 
 <div id="stars"></div>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <div class="ticker-msg"><span>★</span> Willkommen im Huttenkartell — Loyalität ist alles.</div>
+    <div class="ticker-msg"><span>☠</span> Neue Waffen im Waffenschmied verfügbar — sprecht den Waffenschmied an.</div>
+    <div class="ticker-msg"><span>💊</span> Drogenproduktion läuft auf Hochtouren — alle Dealer auf Station bleiben.</div>
+    <div class="ticker-msg"><span>⚠</span> Vorsicht in Sektor 7 — feindliche Aktivität gemeldet.</div>
+    <div class="ticker-msg"><span>★</span> Willkommen im Huttenkartell — Loyalität ist alles.</div>
+    <div class="ticker-msg"><span>☠</span> Neue Waffen im Waffenschmied verfügbar — sprecht den Waffenschmied an.</div>
+    <div class="ticker-msg"><span>💊</span> Drogenproduktion läuft auf Hochtouren — alle Dealer auf Station bleiben.</div>
+    <div class="ticker-msg"><span>⚠</span> Vorsicht in Sektor 7 — feindliche Aktivität gemeldet.</div>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -489,20 +365,6 @@
     </ul>
   </div>
 </nav>
-
-<!-- TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker-track" id="ticker-track">
-    <div class="ticker-msg"><span>★</span> Willkommen im Huttenkartell — Loyalität ist alles.</div>
-    <div class="ticker-msg"><span>☠</span> Neue Waffen im Waffenschmied verfügbar — sprecht den Waffenschmied an.</div>
-    <div class="ticker-msg"><span>💊</span> Drogenproduktion läuft auf Hochtouren — alle Dealer auf Station bleiben.</div>
-    <div class="ticker-msg"><span>⚠</span> Vorsicht in Sektor 7 — feindliche Aktivität gemeldet.</div>
-    <div class="ticker-msg"><span>★</span> Willkommen im Huttenkartell — Loyalität ist alles.</div>
-    <div class="ticker-msg"><span>☠</span> Neue Waffen im Waffenschmied verfügbar — sprecht den Waffenschmied an.</div>
-    <div class="ticker-msg"><span>💊</span> Drogenproduktion läuft auf Hochtouren — alle Dealer auf Station bleiben.</div>
-    <div class="ticker-msg"><span>⚠</span> Vorsicht in Sektor 7 — feindliche Aktivität gemeldet.</div>
-  </div>
-</div>
 
 <!-- PASSWORD MODAL -->
 <div class="modal-overlay" id="modal">
@@ -532,7 +394,7 @@
       <p class="hero-sub">Macht. Loyalität. Kontrolle. — Willkommen im Kartell.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="#leaders-sec">Unsere Führung</a>
-        <a class="btn btn-outline" href="#jobs-sec">Rollen & Jobs</a>
+        <a class="btn btn-outline" href="#jobs-sec">Rollen &amp; Jobs</a>
         <a class="btn btn-outline" href="#recruit-sec">Rekrutierung</a>
       </div>
     </div>
@@ -554,14 +416,13 @@
         <div class="stats reveal">
           <div class="stat"><span class="stat-val">∞</span><span class="stat-lbl">Sektoren</span></div>
           <div class="stat"><span class="stat-val">3</span><span class="stat-lbl">Kernrollen</span></div>
-          <div class="stat"><span class="stat-val">3</span><span class="stat-lbl">Anführer</span></div>
+          <div class="stat"><span class="stat-val">4</span><span class="stat-lbl">Anführer</span></div>
           <div class="stat"><span class="stat-val">☠</span><span class="stat-lbl">Null Kompromisse</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- LEADERS -->
   <section class="content-sec" id="leaders-sec">
     <div class="container">
       <div class="reveal" style="text-align:center">
@@ -569,91 +430,70 @@
         <h2 class="sec-title">Unsere Anführer</h2>
         <div class="sec-line" style="margin:0 auto 56px"></div>
       </div>
-
       <div class="leaders-pyramid">
-
-        <!-- Tier 1 -->
         <div class="leaders-row tier-1 reveal">
           <div class="leader-card">
-            <div class="leader-avatar">
-              <img src="https://i.imgur.com/9SUO0Bx.jpeg" alt="Jâruz" onerror="this.style.display='none'"/>
-              JZ
-            </div>
+            <div class="leader-avatar"><img src="https://i.imgur.com/9SUO0Bx.jpeg" alt="Jâruz" onerror="this.style.display='none'"/>JZ</div>
             <div class="leader-name">Jâruz</div>
             <div class="leader-rank">👑 Majordomus</div>
             <p class="leader-bio">Der Majordomus des Huttenkartells — Jâruz koordiniert, plant und sorgt dafür, dass das Kartell reibungslos funktioniert. Seine Autorität wird von allen respektiert.</p>
           </div>
         </div>
-
         <div class="leaders-sep"></div>
-
-        <!-- Tier 2 -->
         <div class="leaders-row tier-2 reveal">
           <div class="leader-card">
-            <div class="leader-avatar">
-              <img src="https://i.imgur.com/40gtlIi.jpeg" alt="Fruity Flame" onerror="this.style.display='none'"/>
-              FO
-            </div>
+            <div class="leader-avatar"><img src="https://i.imgur.com/40gtlIi.jpeg" alt="Fruity Flame" onerror="this.style.display='none'"/>FO</div>
             <div class="leader-name">Fruity "Flame" Olatunji</div>
             <div class="leader-rank">☠ Unterlord</div>
             <p class="leader-bio">Der unbestrittene Vollstrecker des Kartells. Flame führt mit Kaltblütigkeit und strategischem Genius.</p>
           </div>
         </div>
-
         <div class="leaders-sep"></div>
-
-        <!-- Tier 3 -->
         <div class="leaders-row tier-3 reveal">
           <div class="leader-card">
-            <div class="leader-avatar">
-              <img src="https://i.imgur.com/i7dXdkY.png" alt="Christos Sluss" onerror="this.style.display='none'"/>
-              CP
-            </div>
+            <div class="leader-avatar"><img src="https://i.imgur.com/i7dXdkY.png" alt="Christos Sluss" onerror="this.style.display='none'"/>CP</div>
             <div class="leader-name">Christos "Sluss" Petridis</div>
             <div class="leader-rank">⚡ Vollstrecker</div>
-            <p class="leader-bio">Der Arm des Kartells. Sluss setzt Befehle mit Entschlossenheit und Effizienz um — keine zweite Chance.</p>
+            <p class="leader-bio">Der Arm des Kartells. Sluss setzt Befehle mit Entschlossenheit und Effizienz um.</p>
           </div>
           <div class="leader-card">
-            <div class="leader-avatar"><img src="https://i.imgur.com/2ND8gru.png" alt="Dren Valis" onerror="this.style.display='none'"/>MW</div>
+            <div class="leader-avatar"><img src="https://i.imgur.com/2ND8gru.png" alt="Dren Valis" onerror="this.style.display='none'"/>DV</div>
             <div class="leader-name">Dren Valis</div>
             <div class="leader-rank">⚡ Vollstrecker</div>
-            <p class="leader-bio">Ein weiterer Vollstrecker des Kartells — Marwin steht für Stärke und bedingungslose Loyalität gegenüber der Führung.</p>
+            <p class="leader-bio">Ein Vollstrecker des Kartells — Dren Valis steht für Stärke und bedingungslose Loyalität.</p>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- JOBS -->
   <section class="content-sec" id="jobs-sec">
     <div class="container">
       <div class="reveal">
         <div class="sec-label">Organisation</div>
-        <h2 class="sec-title">Rollen & Jobs</h2>
+        <h2 class="sec-title">Rollen &amp; Jobs</h2>
         <div class="sec-line"></div>
       </div>
       <div class="jobs-list">
         <div class="job-row reveal">
           <div class="job-name">Kopfgeldjäger</div>
-          <div class="job-desc">Kopfgeldjäger sind die gefährlichsten Söldner der Galaxis. Sie nehmen Aufträge an, jagen Zielpersonen durch das gesamte Universum und liefern sie — lebendig oder tot — gegen eine vereinbarte Summe ab. Kein Ziel ist zu weit, kein Versteck sicher genug.</div>
+          <div class="job-desc">Kopfgeldjäger sind die gefährlichsten Söldner der Galaxis. Sie nehmen Aufträge an, jagen Zielpersonen durch das gesamte Universum und liefern sie — lebendig oder tot — gegen eine vereinbarte Summe ab.</div>
           <div class="job-icon">🎯</div>
         </div>
         <div class="job-row reveal">
           <div class="job-name">Waffenschmied</div>
-          <div class="job-desc">Waffenschmiede sind die technischen Meister des Kartells. Sie stellen hochwertige Blaster, Modifikationen und Waffensysteme her und verkaufen diese an vertrauenswürdige Abnehmer. Qualität und Diskretion stehen dabei an erster Stelle.</div>
+          <div class="job-desc">Waffenschmiede sind die technischen Meister des Kartells. Sie stellen hochwertige Blaster, Modifikationen und Waffensysteme her und verkaufen diese an vertrauenswürdige Abnehmer.</div>
           <div class="job-icon">⚙️</div>
         </div>
         <div class="job-row reveal">
           <div class="job-name">Dealer</div>
-          <div class="job-desc">Die Dealer des Kartells kontrollieren den Vertrieb von Substanzen durch das gesamte Netzwerk. Von der Herstellung bis zum Verkauf — alles läuft durch vertrauenswürdige Kanäle. Umsatz und Stillschweigen sind die obersten Gebote.</div>
+          <div class="job-desc">Die Dealer des Kartells kontrollieren den Vertrieb von Substanzen durch das gesamte Netzwerk. Von der Herstellung bis zum Verkauf — alles läuft durch vertrauenswürdige Kanäle.</div>
           <div class="job-icon">💊</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- HIERARCHY -->
   <section class="content-sec" id="hierarchy-sec">
     <div class="container">
       <div class="reveal">
@@ -662,82 +502,25 @@
         <div class="sec-line"></div>
       </div>
       <div class="hierarchy-list reveal">
-        <div class="hier-item tier-top">
-          <div class="hier-rank-num">VIII</div>
-          <div class="hier-info">
-            <div class="hier-name">Majordomus</div>
-            <div class="hier-desc">Die höchste Autorität des Kartells. Sein Wort ist Gesetz.</div>
-          </div>
-          <div class="hier-badge top">Führung</div>
-        </div>
+        <div class="hier-item tier-top"><div class="hier-rank-num">VIII</div><div class="hier-info"><div class="hier-name">Majordomus</div><div class="hier-desc">Die höchste Autorität des Kartells. Sein Wort ist Gesetz.</div></div><div class="hier-badge top">Führung</div></div>
         <div class="hier-connector"></div>
-        <div class="hier-item tier-high">
-          <div class="hier-rank-num">VII</div>
-          <div class="hier-info">
-            <div class="hier-name">Unterlord</div>
-            <div class="hier-desc">Stellvertreter des Majordomus. Führt Operationen und verwaltet die Vollstrecker.</div>
-          </div>
-          <div class="hier-badge high">Führung</div>
-        </div>
+        <div class="hier-item tier-high"><div class="hier-rank-num">VII</div><div class="hier-info"><div class="hier-name">Unterlord</div><div class="hier-desc">Stellvertreter des Majordomus. Führt Operationen und verwaltet die Vollstrecker.</div></div><div class="hier-badge high">Führung</div></div>
         <div class="hier-connector"></div>
-        <div class="hier-item tier-high">
-          <div class="hier-rank-num">VI</div>
-          <div class="hier-info">
-            <div class="hier-name">Vollstrecker</div>
-            <div class="hier-desc">Elite-Mitglieder des Kartells. Führen wichtige Aufträge aus und leiten untere Ränge.</div>
-          </div>
-          <div class="hier-badge high">Führung</div>
-        </div>
+        <div class="hier-item tier-high"><div class="hier-rank-num">VI</div><div class="hier-info"><div class="hier-name">Vollstrecker</div><div class="hier-desc">Elite-Mitglieder des Kartells. Führen wichtige Aufträge aus und leiten untere Ränge.</div></div><div class="hier-badge high">Führung</div></div>
         <div class="hier-connector"></div>
-        <div class="hier-item tier-mid">
-          <div class="hier-rank-num">V</div>
-          <div class="hier-info">
-            <div class="hier-name">Veteran</div>
-            <div class="hier-desc">Bewährte Mitglieder mit langer Zugehörigkeit und besonderem Vertrauen.</div>
-          </div>
-          <div class="hier-badge mid">Mitglied</div>
-        </div>
+        <div class="hier-item tier-mid"><div class="hier-rank-num">V</div><div class="hier-info"><div class="hier-name">Veteran</div><div class="hier-desc">Bewährte Mitglieder mit langer Zugehörigkeit und besonderem Vertrauen.</div></div><div class="hier-badge mid">Mitglied</div></div>
         <div class="hier-connector"></div>
-        <div class="hier-item tier-mid">
-          <div class="hier-rank-num">IV</div>
-          <div class="hier-info">
-            <div class="hier-name">Erfahrenes Mitglied</div>
-            <div class="hier-desc">Aktive Mitglieder die sich durch ihre Arbeit für das Kartell verdient gemacht haben.</div>
-          </div>
-          <div class="hier-badge mid">Mitglied</div>
-        </div>
+        <div class="hier-item tier-mid"><div class="hier-rank-num">IV</div><div class="hier-info"><div class="hier-name">Erfahrenes Mitglied</div><div class="hier-desc">Aktive Mitglieder die sich durch ihre Arbeit für das Kartell verdient gemacht haben.</div></div><div class="hier-badge mid">Mitglied</div></div>
         <div class="hier-connector"></div>
-        <div class="hier-item tier-low">
-          <div class="hier-rank-num">III</div>
-          <div class="hier-info">
-            <div class="hier-name">Mitglied</div>
-            <div class="hier-desc">Vollwertige Mitglieder des Kartells mit Zugang zu allen Operationen.</div>
-          </div>
-          <div class="hier-badge low">Mitglied</div>
-        </div>
+        <div class="hier-item tier-low"><div class="hier-rank-num">III</div><div class="hier-info"><div class="hier-name">Mitglied</div><div class="hier-desc">Vollwertige Mitglieder des Kartells mit Zugang zu allen Operationen.</div></div><div class="hier-badge low">Mitglied</div></div>
         <div class="hier-connector"></div>
-        <div class="hier-item tier-low">
-          <div class="hier-rank-num">II</div>
-          <div class="hier-info">
-            <div class="hier-name">Schläger</div>
-            <div class="hier-desc">Neue Mitglieder die sich gerade beweisen und ihren Platz im Kartell festigen.</div>
-          </div>
-          <div class="hier-badge low">Einsteiger</div>
-        </div>
+        <div class="hier-item tier-low"><div class="hier-rank-num">II</div><div class="hier-info"><div class="hier-name">Schläger</div><div class="hier-desc">Neue Mitglieder die sich gerade beweisen und ihren Platz im Kartell festigen.</div></div><div class="hier-badge low">Einsteiger</div></div>
         <div class="hier-connector"></div>
-        <div class="hier-item tier-new">
-          <div class="hier-rank-num">I</div>
-          <div class="hier-info">
-            <div class="hier-name">Newcomer</div>
-            <div class="hier-desc">Frisch aufgenommene Rekruten. Der Beginn des Weges im Huttenkartell.</div>
-          </div>
-          <div class="hier-badge new">Einsteiger</div>
-        </div>
+        <div class="hier-item tier-new"><div class="hier-rank-num">I</div><div class="hier-info"><div class="hier-name">Newcomer</div><div class="hier-desc">Frisch aufgenommene Rekruten. Der Beginn des Weges im Huttenkartell.</div></div><div class="hier-badge new">Einsteiger</div></div>
       </div>
     </div>
   </section>
 
-  <!-- RECRUITMENT -->
   <section class="content-sec" id="recruit-sec">
     <div class="container">
       <div class="reveal">
@@ -745,27 +528,15 @@
         <h2 class="sec-title">Rekrutierung</h2>
         <div class="sec-line"></div>
       </div>
-      <div class="recruit-grid reveal">
-        <div class="recruit-info">
+      <div class="recruit-grid">
+        <div class="recruit-info reveal">
           <p class="recruit-text">Du willst Teil des mächtigsten Kartells der Galaxis werden? Das Huttenkartell rekrutiert neue Mitglieder, die bereit sind, Loyalität und Einsatz zu beweisen.</p>
           <p class="recruit-text">Wende dich direkt an den <strong>Unterlord</strong>, um dein Interesse zu bekunden. Er wird dich durch den Aufnahmeprozess führen und entscheiden, ob du das Zeug hast, Teil unserer Organisation zu werden.</p>
           <div class="recruit-steps">
-            <div class="recruit-step">
-              <div class="recruit-step-num">1</div>
-              <div class="recruit-step-text">Kontaktiere den <strong>Unterlord</strong> im Spiel</div>
-            </div>
-            <div class="recruit-step">
-              <div class="recruit-step-num">2</div>
-              <div class="recruit-step-text">Stelle dich vor und erkläre deine Motivation</div>
-            </div>
-            <div class="recruit-step">
-              <div class="recruit-step-num">3</div>
-              <div class="recruit-step-text">Bestehe die Aufnahmeprüfung</div>
-            </div>
-            <div class="recruit-step">
-              <div class="recruit-step-num">4</div>
-              <div class="recruit-step-text">Werde als <strong>Newcomer</strong> aufgenommen</div>
-            </div>
+            <div class="recruit-step"><div class="recruit-step-num">1</div><div class="recruit-step-text">Kontaktiere den <strong>Unterlord</strong> im Spiel</div></div>
+            <div class="recruit-step"><div class="recruit-step-num">2</div><div class="recruit-step-text">Stelle dich vor und erkläre deine Motivation</div></div>
+            <div class="recruit-step"><div class="recruit-step-num">3</div><div class="recruit-step-text">Bestehe die Aufnahmeprüfung</div></div>
+            <div class="recruit-step"><div class="recruit-step-num">4</div><div class="recruit-step-text">Werde als <strong>Newcomer</strong> aufgenommen</div></div>
           </div>
         </div>
         <div class="recruit-card reveal">
@@ -785,245 +556,101 @@
       <p class="foot-text">Macht ist keine Frage. Sie ist eine Tatsache. &nbsp;—&nbsp; © Huttenkartell</p>
     </div>
   </footer>
-
 </div>
 
 <!-- PANEL PAGE -->
-<div class="page" id="page-panel" style="width:100%;min-height:100vh;">
+<div class="page" id="page-panel">
   <div class="panel-wrap">
-
-    <!-- Sidebar tabs -->
     <div class="panel-sidebar">
       <div class="panel-sidebar-title">Panel</div>
-      <button class="panel-tab active" onclick="switchTab('informationen')">📋 Informationen</button>
-      <button class="panel-tab" onclick="switchTab('regelwerk')">📜 Regelwerk</button>
-      <button class="panel-tab" onclick="switchTab('verschluesseler')">🔐 Verschlüsseler</button>
-      <button class="panel-tab" onclick="switchTab('material-tracker')">⚙️ Material Tracker</button>
-      <button class="panel-tab" onclick="switchTab('craft-log');renderLog()">📒 Craft Log</button>
+      <button class="panel-tab active" onclick="switchTab('informationen',this)">📋 Informationen</button>
+      <button class="panel-tab" onclick="switchTab('regelwerk',this)">📜 Regelwerk</button>
+      <button class="panel-tab" onclick="switchTab('verschluesseler',this)">🔐 Verschlüsseler</button>
+      <button class="panel-tab" onclick="switchTab('material-tracker',this)">⚙️ Material Tracker</button>
+      <button class="panel-tab" onclick="switchTab('craft-log',this);renderLog()">📒 Craft Log</button>
     </div>
-
-    <!-- Content area -->
     <div class="panel-main">
 
-      <!-- Informationen tab -->
+      <!-- INFORMATIONEN -->
       <div class="panel-section active" id="tab-informationen">
         <div class="panel-section-header">
           <div class="sec-label">Interner Bereich</div>
           <h2 class="sec-title" style="margin-bottom:0">Informationen</h2>
         </div>
-
-        <!-- Sub-tabs -->
         <div class="subtab-bar">
-          <button class="subtab active" onclick="switchSubtab('waffen-preise')">⚔️ Waffen Preise</button>
-          <button class="subtab" onclick="switchSubtab('drogen-guide')">💊 Drogen-Guide</button>
+          <button class="subtab active" onclick="switchSubtab('waffen-preise',this)">⚔️ Waffen Preise</button>
+          <button class="subtab" onclick="switchSubtab('drogen-guide',this)">💊 Drogen-Guide</button>
         </div>
-
-        <!-- Waffen Preise -->
         <div class="subtab-content active" id="subtab-waffen-preise">
           <div class="weapon-grid">
-            <div class="weapon-card">
-              <div class="weapon-icon">🎯</div>
-              <div class="weapon-name">NT-242</div>
-              <div class="weapon-desc">Stärkstes Scharfschützengewehr.</div>
-              <div class="weapon-price">20,000 <span>Credits</span></div>
-            </div>
-            <div class="weapon-card">
-              <div class="weapon-icon">💥</div>
-              <div class="weapon-name">JND-41 Shotgun</div>
-              <div class="weapon-desc">Stärkste Shotgun.</div>
-              <div class="weapon-price">15,000 <span>Credits</span></div>
-            </div>
-            <div class="weapon-card">
-              <div class="weapon-icon">🔫</div>
-              <div class="weapon-name">BK-43</div>
-              <div class="weapon-desc">Stärkste Sturmgewehr.</div>
-              <div class="weapon-price">10,000 <span>Credits</span></div>
-            </div>
-            <div class="weapon-card">
-              <div class="weapon-icon">🔥</div>
-              <div class="weapon-name">M-45 LMG</div>
-              <div class="weapon-desc">Stärkste LMG.</div>
-              <div class="weapon-price">15,000 <span>Credits</span></div>
-            </div>
-            <div class="weapon-card">
-              <div class="weapon-icon">🔩</div>
-              <div class="weapon-name">POWER-5</div>
-              <div class="weapon-desc">Stärkste Pistole.</div>
-              <div class="weapon-price">7,000 <span>Credits</span></div>
-            </div>
+            <div class="weapon-card"><div class="weapon-icon">🎯</div><div class="weapon-name">NT-242</div><div class="weapon-desc">Stärkstes Scharfschützengewehr.</div><div class="weapon-price">20,000 <span>Credits</span></div></div>
+            <div class="weapon-card"><div class="weapon-icon">💥</div><div class="weapon-name">JND-41 Shotgun</div><div class="weapon-desc">Stärkste Shotgun.</div><div class="weapon-price">15,000 <span>Credits</span></div></div>
+            <div class="weapon-card"><div class="weapon-icon">🔫</div><div class="weapon-name">BK-43</div><div class="weapon-desc">Stärkste Sturmgewehr.</div><div class="weapon-price">10,000 <span>Credits</span></div></div>
+            <div class="weapon-card"><div class="weapon-icon">🔥</div><div class="weapon-name">M-45 LMG</div><div class="weapon-desc">Stärkste LMG.</div><div class="weapon-price">15,000 <span>Credits</span></div></div>
+            <div class="weapon-card"><div class="weapon-icon">🔩</div><div class="weapon-name">POWER-5</div><div class="weapon-desc">Stärkste Pistole.</div><div class="weapon-price">7,000 <span>Credits</span></div></div>
           </div>
         </div>
-
-        <!-- Drogen Guide -->
         <div class="subtab-content" id="subtab-drogen-guide">
           <div class="drug-list">
-
-            <!-- Deathstick -->
             <div class="drug-item">
               <div class="drug-header" onclick="toggleDrug(this)">
-                <div class="drug-header-left">
-                  <span class="drug-icon">☠️</span>
-                  <span class="drug-name">Deathstick</span>
-                </div>
+                <div class="drug-header-left"><span class="drug-icon">☠️</span><span class="drug-name">Deathstick</span></div>
                 <span class="drug-arrow">▼</span>
               </div>
               <div class="drug-steps">
-                <div class="step">
-                  <div class="step-number">1</div>
-                  <div class="step-content">
-                    <div class="step-title">Saatgut besorgen</div>
-                    <div class="step-desc">Gehe zum <strong>Farming Busch</strong> und hole dir <strong>Balo Pilz Saatgut</strong>.</div>
-                  </div>
-                </div>
+                <div class="step"><div class="step-number">1</div><div class="step-content"><div class="step-title">Saatgut besorgen</div><div class="step-desc">Gehe zum <strong>Farming Busch</strong> und hole dir <strong>Balo Pilz Saatgut</strong>.</div></div></div>
                 <div class="step-connector"></div>
-                <div class="step">
-                  <div class="step-number">2</div>
-                  <div class="step-content">
-                    <div class="step-title">Anpflanzen</div>
-                    <div class="step-desc">Lege das Saatgut ins <strong>Beet</strong> und lass es wachsen. <strong>Wartezeit: ~7 Minuten.</strong></div>
-                  </div>
-                </div>
+                <div class="step"><div class="step-number">2</div><div class="step-content"><div class="step-title">Anpflanzen</div><div class="step-desc">Lege das Saatgut ins <strong>Beet</strong> und lass es wachsen. <strong>Wartezeit: ~7 Minuten.</strong></div></div></div>
                 <div class="step-connector"></div>
-                <div class="step">
-                  <div class="step-number">3</div>
-                  <div class="step-content">
-                    <div class="step-title">Ernten</div>
-                    <div class="step-desc">Ernte den gewachsenen <strong>Balo Pilz</strong> aus dem Beet.</div>
-                  </div>
-                </div>
+                <div class="step"><div class="step-number">3</div><div class="step-content"><div class="step-title">Ernten</div><div class="step-desc">Ernte den gewachsenen <strong>Balo Pilz</strong> aus dem Beet.</div></div></div>
                 <div class="step-connector"></div>
-                <div class="step">
-                  <div class="step-number">4</div>
-                  <div class="step-content">
-                    <div class="step-title">Trocknen</div>
-                    <div class="step-desc">Lege den Balo Pilz in die <strong>Trocknungsstation</strong>. Das Ergebnis ist <strong>Getrockneter Balo Pilz</strong>.</div>
-                  </div>
-                </div>
+                <div class="step"><div class="step-number">4</div><div class="step-content"><div class="step-title">Trocknen</div><div class="step-desc">Lege den Balo Pilz in die <strong>Trocknungsstation</strong>. Das Ergebnis ist <strong>Getrockneter Balo Pilz</strong>.</div></div></div>
                 <div class="step-connector"></div>
-                <div class="step">
-                  <div class="step-number">5</div>
-                  <div class="step-content">
-                    <div class="step-title">Synthetisieren</div>
-                    <div class="step-desc">Lege den getrockneten Balo Pilz in den <strong>Synthesizer</strong>. Das Endprodukt ist fertiges <strong>Deathstick</strong> — bereit zum Verkauf.</div>
-                  </div>
-                </div>
+                <div class="step"><div class="step-number">5</div><div class="step-content"><div class="step-title">Synthetisieren</div><div class="step-desc">Lege den getrockneten Balo Pilz in den <strong>Synthesizer</strong>. Das Endprodukt ist fertiges <strong>Deathstick</strong>.</div></div></div>
               </div>
             </div>
-
-            <!-- Lunar Gras -->
             <div class="drug-item">
               <div class="drug-header" onclick="toggleDrug(this)">
-                <div class="drug-header-left">
-                  <span class="drug-icon">🌿</span>
-                  <span class="drug-name">Lunar Gras</span>
-                </div>
+                <div class="drug-header-left"><span class="drug-icon">🌿</span><span class="drug-name">Lunar Gras</span></div>
                 <span class="drug-arrow">▼</span>
               </div>
               <div class="drug-steps">
-                <div class="step">
-                  <div class="step-number">1</div>
-                  <div class="step-content">
-                    <div class="step-title">Saatgut besorgen</div>
-                    <div class="step-desc">Gehe zum <strong>Farming Busch</strong> und hole dir <strong>Lunar Gras Saatgut</strong>.</div>
-                  </div>
-                </div>
+                <div class="step"><div class="step-number">1</div><div class="step-content"><div class="step-title">Saatgut besorgen</div><div class="step-desc">Gehe zum <strong>Farming Busch</strong> und hole dir <strong>Lunar Gras Saatgut</strong>.</div></div></div>
                 <div class="step-connector"></div>
-                <div class="step">
-                  <div class="step-number">2</div>
-                  <div class="step-content">
-                    <div class="step-title">Anpflanzen</div>
-                    <div class="step-desc">Lege das Saatgut ins <strong>Beet</strong> und lass es wachsen.</div>
-                  </div>
-                </div>
+                <div class="step"><div class="step-number">2</div><div class="step-content"><div class="step-title">Anpflanzen</div><div class="step-desc">Lege das Saatgut ins <strong>Beet</strong> und lass es wachsen.</div></div></div>
                 <div class="step-connector"></div>
-                <div class="step">
-                  <div class="step-number">3</div>
-                  <div class="step-content">
-                    <div class="step-title">Ernten</div>
-                    <div class="step-desc">Ernte das gewachsene <strong>Lunar Gras</strong> aus dem Beet.</div>
-                  </div>
-                </div>
+                <div class="step"><div class="step-number">3</div><div class="step-content"><div class="step-title">Ernten</div><div class="step-desc">Ernte das gewachsene <strong>Lunar Gras</strong> aus dem Beet.</div></div></div>
                 <div class="step-connector"></div>
-                <div class="step">
-                  <div class="step-number">4</div>
-                  <div class="step-content">
-                    <div class="step-title">Trocknen</div>
-                    <div class="step-desc">Lege das Lunar Gras in die <strong>Trocknungsstation</strong>. Das Endprodukt ist <strong>Getrocknetes Lunar Gras</strong> — bereit zum Verkauf.</div>
-                  </div>
-                </div>
+                <div class="step"><div class="step-number">4</div><div class="step-content"><div class="step-title">Trocknen</div><div class="step-desc">Lege das Lunar Gras in die <strong>Trocknungsstation</strong>. Das Endprodukt ist <strong>Getrocknetes Lunar Gras</strong>.</div></div></div>
               </div>
             </div>
-
           </div>
         </div>
-
       </div>
-    <!-- REGELWERK TAB -->
+
+      <!-- REGELWERK -->
       <div class="panel-section" id="tab-regelwerk">
         <div class="panel-section-header">
           <div class="sec-label">Interner Bereich</div>
           <h2 class="sec-title" style="margin-bottom:0">Regelwerk</h2>
         </div>
         <div class="rules-list">
-          <div class="rule-item">
-            <div class="rule-num">01</div>
-            <div class="rule-body">
-              <div class="rule-title">Loyalität geht vor</div>
-              <div class="rule-desc">Jedes Mitglied schuldet dem Kartell absolute Loyalität. Verrat an der Organisation oder ihren Mitgliedern wird nicht toleriert und hat sofortige Konsequenzen.</div>
-            </div>
-          </div>
-          <div class="rule-item">
-            <div class="rule-num">02</div>
-            <div class="rule-body">
-              <div class="rule-title">Stillschweigen ist Pflicht</div>
-              <div class="rule-desc">Interne Informationen, Operationen und Mitglieder dürfen unter keinen Umständen nach außen weitergegeben werden. Was im Kartell passiert, bleibt im Kartell.</div>
-            </div>
-          </div>
-          <div class="rule-item">
-            <div class="rule-num">03</div>
-            <div class="rule-body">
-              <div class="rule-title">Respekt gegenüber der Führung</div>
-              <div class="rule-desc">Anweisungen des Majordomus, des Unterlords und der Vollstrecker sind ohne Widerrede zu befolgen. Befehle der Führung haben höchste Priorität.</div>
-            </div>
-          </div>
-          <div class="rule-item">
-            <div class="rule-num">04</div>
-            <div class="rule-body">
-              <div class="rule-title">Keine internen Konflikte</div>
-              <div class="rule-desc">Streitigkeiten zwischen Mitgliedern werden intern und friedlich gelöst. Eigenmächtige Aktionen gegen Kartellmitglieder sind strengstens verboten.</div>
-            </div>
-          </div>
-          <div class="rule-item">
-            <div class="rule-num">05</div>
-            <div class="rule-body">
-              <div class="rule-title">Einnahmen werden geteilt</div>
-              <div class="rule-desc">Ein festgelegter Anteil aller Einnahmen aus Operationen fließt in die Kartellkasse. Wer für das Kartell arbeitet, trägt auch zu seinem Bestand bei.</div>
-            </div>
-          </div>
-          <div class="rule-item">
-            <div class="rule-num">06</div>
-            <div class="rule-body">
-              <div class="rule-title">Keine unnötigen Feinde</div>
-              <div class="rule-desc">Provokationen gegenüber anderen Fraktionen ohne Genehmigung der Führung sind verboten. Jeder Konflikt nach außen muss durch die Führung autorisiert sein.</div>
-            </div>
-          </div>
-          <div class="rule-item">
-            <div class="rule-num">07</div>
-            <div class="rule-body">
-              <div class="rule-title">Aktivität wird erwartet</div>
-              <div class="rule-desc">Mitglieder sind verpflichtet, regelmäßig aktiv zu sein und zum Kartell beizutragen. Längere Inaktivität ohne Ankündigung kann zum Ausschluss führen.</div>
-            </div>
-          </div>
+          <div class="rule-item"><div class="rule-num">01</div><div class="rule-body"><div class="rule-title">Loyalität geht vor</div><div class="rule-desc">Jedes Mitglied schuldet dem Kartell absolute Loyalität. Verrat an der Organisation oder ihren Mitgliedern wird nicht toleriert.</div></div></div>
+          <div class="rule-item"><div class="rule-num">02</div><div class="rule-body"><div class="rule-title">Stillschweigen ist Pflicht</div><div class="rule-desc">Interne Informationen, Operationen und Mitglieder dürfen unter keinen Umständen nach außen weitergegeben werden.</div></div></div>
+          <div class="rule-item"><div class="rule-num">03</div><div class="rule-body"><div class="rule-title">Respekt gegenüber der Führung</div><div class="rule-desc">Anweisungen des Majordomus, des Unterlords und der Vollstrecker sind ohne Widerrede zu befolgen.</div></div></div>
+          <div class="rule-item"><div class="rule-num">04</div><div class="rule-body"><div class="rule-title">Keine internen Konflikte</div><div class="rule-desc">Streitigkeiten zwischen Mitgliedern werden intern und friedlich gelöst. Eigenmächtige Aktionen gegen Kartellmitglieder sind verboten.</div></div></div>
+          <div class="rule-item"><div class="rule-num">05</div><div class="rule-body"><div class="rule-title">Einnahmen werden geteilt</div><div class="rule-desc">Ein festgelegter Anteil aller Einnahmen aus Operationen fließt in die Kartellkasse.</div></div></div>
+          <div class="rule-item"><div class="rule-num">06</div><div class="rule-body"><div class="rule-title">Keine unnötigen Feinde</div><div class="rule-desc">Provokationen gegenüber anderen Fraktionen ohne Genehmigung der Führung sind verboten.</div></div></div>
+          <div class="rule-item"><div class="rule-num">07</div><div class="rule-body"><div class="rule-title">Aktivität wird erwartet</div><div class="rule-desc">Mitglieder sind verpflichtet, regelmäßig aktiv zu sein. Längere Inaktivität ohne Ankündigung kann zum Ausschluss führen.</div></div></div>
         </div>
       </div>
 
-      <!-- VERSCHLÜSSELER TAB -->
+      <!-- VERSCHLÜSSELER -->
       <div class="panel-section" id="tab-verschluesseler">
         <div class="panel-section-header">
           <div class="sec-label">Interner Bereich</div>
           <h2 class="sec-title" style="margin-bottom:0">Verschlüsseler</h2>
         </div>
-        <!-- Lock screen -->
         <div id="enc-lock" class="enc-lock-screen">
           <div class="enc-lock-icon">🔐</div>
           <div class="enc-lock-title">Zugang erforderlich</div>
@@ -1032,7 +659,6 @@
           <div class="enc-lock-error" id="enc-pw-error"></div>
           <button class="btn btn-primary enc-lock-btn" onclick="unlockEnc()">Entsperren</button>
         </div>
-
         <div class="enc-wrap" id="enc-content" style="display:none">
           <p class="enc-desc">Verschlüssele oder entschlüssele Nachrichten mit einem geheimen Schlüssel. Nur wer den Schlüssel kennt, kann die Nachricht lesen.</p>
           <div class="enc-grid">
@@ -1053,10 +679,20 @@
             </div>
           </div>
         </div>
-        </div>
       </div>
 
-      <!-- CRAFT LOG TAB -->
+      <!-- MATERIAL TRACKER -->
+      <div class="panel-section" id="tab-material-tracker">
+        <div class="panel-section-header">
+          <div class="sec-label">Waffenschmied</div>
+          <h2 class="sec-title" style="margin-bottom:0">Material Tracker</h2>
+        </div>
+        <p style="color:var(--dim);font-size:.92rem;margin-bottom:28px;">Trage deine aktuellen Materialien ein. Der Fortschrittsbalken zeigt, wie nah du am Craften bist.</p>
+        <div class="tracker-weapon-tabs" id="tracker-tabs"></div>
+        <div id="tracker-content"></div>
+      </div>
+
+      <!-- CRAFT LOG -->
       <div class="panel-section" id="tab-craft-log">
         <div class="panel-section-header">
           <div class="sec-label">Waffenschmied</div>
@@ -1065,392 +701,226 @@
         <div id="craft-log-list"></div>
       </div>
 
-      <!-- MATERIAL TRACKER TAB -->
-      <div class="panel-section" id="tab-material-tracker">
-        <div class="panel-section-header">
-          <div class="sec-label">Waffenschmied</div>
-          <h2 class="sec-title" style="margin-bottom:0">Material Tracker</h2>
-        </div>
-        <p style="color:var(--dim);font-size:.92rem;margin-bottom:28px;">Trage deine aktuellen Materialien ein. Der Fortschrittsbalken zeigt, wie nah du am Craften bist.</p>
-
-        <!-- Weapon selector -->
-        <div class="tracker-weapon-tabs" id="tracker-tabs"></div>
-        <div id="tracker-content"></div>
-      </div>
-
     </div>
   </div>
 </div>
 
 <script>
-  function makeStars(container, count) {
-    for(let i=0;i<count;i++){
-      const el=document.createElement('span');
-      const sz=Math.random()*2.2+0.4;
-      el.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;animation-duration:${Math.random()*5+3}s;animation-delay:${Math.random()*6}s;`;
-      container.appendChild(el);
-    }
+  // Stars
+  const s = document.getElementById('stars');
+  for(let i=0;i<160;i++){
+    const el=document.createElement('span');
+    const sz=Math.random()*2.2+0.4;
+    el.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;animation-duration:${Math.random()*5+3}s;animation-delay:${Math.random()*6}s;`;
+    s.appendChild(el);
   }
-  makeStars(document.getElementById('stars'), 160);
 
+  // Reveal
   const obs = new IntersectionObserver(entries => entries.forEach(e => {
     if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
   }), {threshold:.12});
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
+  // Page switching
   function showPage(name) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById('page-' + name).classList.add('active');
     window.scrollTo(0,0);
-    if(name === 'panel') {
-      document.querySelectorAll('#page-panel .reveal').forEach(el => {
-        el.classList.remove('visible');
-        setTimeout(() => obs.observe(el), 50);
-      });
-    }
   }
 
-  function openModal() {
-    document.getElementById('modal').classList.add('open');
-    setTimeout(() => document.getElementById('pw-input').focus(), 100);
-  }
-  function closeModal() {
-    document.getElementById('modal').classList.remove('open');
-    document.getElementById('pw-input').value = '';
-    document.getElementById('pw-error').textContent = '';
-  }
-  function clearError() {
-    document.getElementById('pw-error').textContent = '';
-    document.getElementById('pw-input').classList.remove('shake');
-  }
+  // Modal
+  function openModal() { document.getElementById('modal').classList.add('open'); setTimeout(()=>document.getElementById('pw-input').focus(),100); }
+  function closeModal() { document.getElementById('modal').classList.remove('open'); document.getElementById('pw-input').value=''; document.getElementById('pw-error').textContent=''; }
+  function clearError() { document.getElementById('pw-error').textContent=''; document.getElementById('pw-input').classList.remove('shake'); }
   function checkPw() {
     const val = document.getElementById('pw-input').value;
-    if(val === '123') {
-      closeModal();
-      showPage('panel');
-    } else {
-      const input = document.getElementById('pw-input');
-      document.getElementById('pw-error').textContent = 'Falsches Passwort. Zugang verweigert.';
-      input.classList.remove('shake');
-      void input.offsetWidth;
-      input.classList.add('shake');
-      input.value = '';
+    if(val==='123'){ closeModal(); showPage('panel'); }
+    else {
+      const input=document.getElementById('pw-input');
+      document.getElementById('pw-error').textContent='Falsches Passwort. Zugang verweigert.';
+      input.classList.remove('shake'); void input.offsetWidth; input.classList.add('shake'); input.value='';
     }
   }
-  document.getElementById('modal').addEventListener('click', function(e) {
-    if(e.target === this) closeModal();
-  });
+  document.getElementById('modal').addEventListener('click',function(e){ if(e.target===this)closeModal(); });
 
-  function switchTab(name) {
-    document.querySelectorAll('.panel-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.panel-section').forEach(s => s.classList.remove('active'));
-    event.target.classList.add('active');
-    document.getElementById('tab-' + name).classList.add('active');
+  // Panel tabs
+  function switchTab(name, btn) {
+    document.querySelectorAll('.panel-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.panel-section').forEach(s=>s.classList.remove('active'));
+    if(btn) btn.classList.add('active');
+    document.getElementById('tab-'+name).classList.add('active');
   }
 
-  function toggleDrug(header) {
-    const item = header.parentElement;
-    item.classList.toggle('open');
+  function toggleDrug(header) { header.parentElement.classList.toggle('open'); }
+
+  function switchSubtab(name, btn) {
+    const parent = btn.closest('.panel-section');
+    parent.querySelectorAll('.subtab').forEach(t=>t.classList.remove('active'));
+    parent.querySelectorAll('.subtab-content').forEach(s=>s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('subtab-'+name).classList.add('active');
   }
 
-  // VERSCHLÜSSELER
-  let encMode = 'vigenere'; // 'vigenere' or 'caesar'
-
+  // Verschlüsseler
+  let encMode = 'vigenere';
   function unlockEnc() {
     const pw = document.getElementById('enc-pw').value;
-    if(pw === '111') {
-      encMode = 'vigenere';
-      document.getElementById('enc-lock').style.display = 'none';
-      document.getElementById('enc-content').style.display = 'block';
-      document.getElementById('enc-key').style.display = '';
-      document.getElementById('enc-key-label').style.display = '';
-    } else if(pw === '122') {
-      encMode = 'caesar';
-      document.getElementById('enc-lock').style.display = 'none';
-      document.getElementById('enc-content').style.display = 'block';
-      document.getElementById('enc-key').placeholder = 'Verschiebung (z.B. 7)';
-      document.getElementById('enc-key-label').textContent = 'Verschiebung (Zahl)';
+    if(pw==='111') {
+      encMode='vigenere';
+      document.getElementById('enc-lock').style.display='none';
+      document.getElementById('enc-content').style.display='block';
+      document.getElementById('enc-key').placeholder="Schlüssel (z.B. 'kartell')";
+      document.getElementById('enc-key-label').textContent='Schlüssel';
+    } else if(pw==='122') {
+      encMode='caesar';
+      document.getElementById('enc-lock').style.display='none';
+      document.getElementById('enc-content').style.display='block';
+      document.getElementById('enc-key').placeholder='Verschiebung (z.B. 7)';
+      document.getElementById('enc-key-label').textContent='Verschiebung (Zahl)';
     } else {
-      document.getElementById('enc-pw-error').textContent = 'Falsches Passwort. Zugang verweigert.';
-      document.getElementById('enc-pw').value = '';
+      document.getElementById('enc-pw-error').textContent='Falsches Passwort. Zugang verweigert.';
+      document.getElementById('enc-pw').value='';
     }
   }
-  function vigenere(text, key, encrypt) {
-    key = key.toLowerCase().replace(/[^a-z]/g, '') || 'key';
-    let result = ''; let ki = 0;
-    for(let i = 0; i < text.length; i++) {
-      const c = text[i];
-      if(/[a-zA-Z]/.test(c)) {
-        const base = c >= 'a' ? 97 : 65;
-        const shift = key.charCodeAt(ki % key.length) - 97;
-        const code = encrypt
-          ? (c.charCodeAt(0) - base + shift) % 26
-          : (c.charCodeAt(0) - base - shift + 26) % 26;
-        result += String.fromCharCode(base + code);
-        ki++;
-      } else { result += c; }
+  function vigenere(text,key,encrypt) {
+    key=key.toLowerCase().replace(/[^a-z]/g,'')||'key'; let result='',ki=0;
+    for(let i=0;i<text.length;i++){
+      const c=text[i];
+      if(/[a-zA-Z]/.test(c)){
+        const base=c>='a'?97:65,shift=key.charCodeAt(ki%key.length)-97;
+        const code=encrypt?(c.charCodeAt(0)-base+shift)%26:(c.charCodeAt(0)-base-shift+26)%26;
+        result+=String.fromCharCode(base+code); ki++;
+      } else result+=c;
     }
     return result;
   }
-  function caesar(text, shift, encrypt) {
-    shift = (parseInt(shift) || 3) % 26;
-    if(!encrypt) shift = 26 - shift;
-    let result = '';
-    for(let i = 0; i < text.length; i++) {
-      const c = text[i];
-      if(/[a-zA-Z]/.test(c)) {
-        const base = c >= 'a' ? 97 : 65;
-        result += String.fromCharCode((c.charCodeAt(0) - base + shift) % 26 + base);
-      } else { result += c; }
+  function caesar(text,shift,encrypt) {
+    shift=(parseInt(shift)||3)%26; if(!encrypt)shift=26-shift; let result='';
+    for(let i=0;i<text.length;i++){
+      const c=text[i];
+      if(/[a-zA-Z]/.test(c)){const base=c>='a'?97:65;result+=String.fromCharCode((c.charCodeAt(0)-base+shift)%26+base);}
+      else result+=c;
     }
     return result;
   }
+  function encryptText(){const t=document.getElementById('enc-input').value,k=document.getElementById('enc-key').value;document.getElementById('enc-output').value=encMode==='caesar'?caesar(t,k,true):vigenere(t,k,true);}
+  function decryptText(){const t=document.getElementById('enc-input').value,k=document.getElementById('enc-key').value;document.getElementById('enc-output').value=encMode==='caesar'?caesar(t,k,false):vigenere(t,k,false);}
+  function copyResult(){navigator.clipboard.writeText(document.getElementById('enc-output').value).then(()=>{const btn=event.target;btn.textContent='✅ Kopiert!';setTimeout(()=>btn.textContent='📋 Kopieren',1500);});}
 
-  function encryptText() {
-    const t = document.getElementById('enc-input').value;
-    const k = document.getElementById('enc-key').value;
-    document.getElementById('enc-output').value = encMode === 'caesar' ? caesar(t, k, true) : vigenere(t, k, true);
-  }
-  function decryptText() {
-    const t = document.getElementById('enc-input').value;
-    const k = document.getElementById('enc-key').value;
-    document.getElementById('enc-output').value = encMode === 'caesar' ? caesar(t, k, false) : vigenere(t, k, false);
-  }
-  function copyResult() {
-    const out = document.getElementById('enc-output');
-    navigator.clipboard.writeText(out.value).then(() => {
-      const btn = event.target;
-      btn.textContent = '✅ Kopiert!';
-      setTimeout(() => btn.textContent = '📋 Kopieren', 1500);
-    });
-  }
-
-  // MATERIAL TRACKER
-  const weapons = [
-    { name: 'NT-242', materials: [
-      { name: 'Tibanna Gas', required: 60 },
-      { name: 'Durastahl', required: 55 },
-      { name: 'Beskar', required: 45 },
-      { name: 'Einfaches Waffenbauteil', required: 25 },
-      { name: 'Fortgeschrittenes Waffenbauteil', required: 35 },
-      { name: 'Professionelles Waffenbauteil', required: 70 },
-    ]},
-    { name: 'JND-41 Shotgun', materials: [
-      { name: 'Tibanna Gas', required: 45 },
-      { name: 'Durastahl', required: 35 },
-      { name: 'Beskar', required: 20 },
-      { name: 'Einfaches Waffenbauteil', required: 20 },
-      { name: 'Fortgeschrittenes Waffenbauteil', required: 15 },
-      { name: 'Professionelles Waffenbauteil', required: 30 },
-    ]},
-    { name: 'BK-43', materials: [
-      { name: 'Tibanna Gas', required: 12 },
-      { name: 'Durastahl', required: 20 },
-      { name: 'Beskar', required: 5 },
-      { name: 'Einfaches Waffenbauteil', required: 10 },
-      { name: 'Fortgeschrittenes Waffenbauteil', required: 15 },
-      { name: 'Professionelles Waffenbauteil', required: 20 },
-    ]},
-    { name: 'M-45 LMG', materials: [
-      { name: 'Tibanna Gas', required: 32 },
-      { name: 'Durastahl', required: 50 },
-      { name: 'Beskar', required: 35 },
-      { name: 'Einfaches Waffenbauteil', required: 20 },
-      { name: 'Fortgeschrittenes Waffenbauteil', required: 30 },
-      { name: 'Professionelles Waffenbauteil', required: 55 },
-    ]},
-    { name: 'POWER-5', materials: [
-      { name: 'Tibanna Gas', required: 10 },
-      { name: 'Durastahl', required: 12 },
-      { name: 'Beskar', required: 3 },
-      { name: 'Einfaches Waffenbauteil', required: 5 },
-      { name: 'Fortgeschrittenes Waffenbauteil', required: 10 },
-      { name: 'Professionelles Waffenbauteil', required: 7 },
-    ]},
+  // Material Tracker
+  const weapons=[
+    {name:'NT-242',materials:[{name:'Tibanna Gas',required:60},{name:'Durastahl',required:55},{name:'Beskar',required:45},{name:'Einfaches Waffenbauteil',required:25},{name:'Fortgeschrittenes Waffenbauteil',required:35},{name:'Professionelles Waffenbauteil',required:70}]},
+    {name:'JND-41 Shotgun',materials:[{name:'Tibanna Gas',required:45},{name:'Durastahl',required:35},{name:'Beskar',required:20},{name:'Einfaches Waffenbauteil',required:20},{name:'Fortgeschrittenes Waffenbauteil',required:15},{name:'Professionelles Waffenbauteil',required:30}]},
+    {name:'BK-43',materials:[{name:'Tibanna Gas',required:12},{name:'Durastahl',required:20},{name:'Beskar',required:5},{name:'Einfaches Waffenbauteil',required:10},{name:'Fortgeschrittenes Waffenbauteil',required:15},{name:'Professionelles Waffenbauteil',required:20}]},
+    {name:'M-45 LMG',materials:[{name:'Tibanna Gas',required:32},{name:'Durastahl',required:50},{name:'Beskar',required:35},{name:'Einfaches Waffenbauteil',required:20},{name:'Fortgeschrittenes Waffenbauteil',required:30},{name:'Professionelles Waffenbauteil',required:55}]},
+    {name:'POWER-5',materials:[{name:'Tibanna Gas',required:10},{name:'Durastahl',required:12},{name:'Beskar',required:3},{name:'Einfaches Waffenbauteil',required:5},{name:'Fortgeschrittenes Waffenbauteil',required:10},{name:'Professionelles Waffenbauteil',required:7}]},
   ];
+  let trackerState={};
+  let activeWeapon=0;
 
-  let trackerState = {}; // { weaponIndex: { matIndex: value } }
-  let activeWeapon = 0;
-
-  // CRAFT LOG
-  let craftLog = [];
-  try {
-    const saved = localStorage.getItem('hk-craft-log');
-    if(saved) craftLog = JSON.parse(saved);
-  } catch(e) {}
-
-  function craftWeapon(wi) {
-    const w = weapons[wi];
-    const entry = {
-      weapon: w.name,
-      timestamp: new Date().toLocaleString('de-DE', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' })
-    };
-    craftLog.unshift(entry);
-    try { localStorage.setItem('hk-craft-log', JSON.stringify(craftLog)); } catch(e) {}
-    // Reset materials for this weapon
-    w.materials.forEach((m, j) => trackerState[wi][j] = 0);
-    try { localStorage.setItem('hk-tracker', JSON.stringify(trackerState)); } catch(e) {}
-    renderTracker(wi);
-    renderLog();
-    // Flash confirmation
-    const hint = document.querySelector('.tracker-craft-hint');
-    if(hint) { hint.textContent = '✅ Craft eingetragen!'; hint.style.color = '#2ecc71'; }
-  }
-
-  function renderLog() {
-    const el = document.getElementById('craft-log-list');
-    if(!el) return;
-    if(craftLog.length === 0) {
-      el.innerHTML = '<div class="log-empty">Noch keine Crafts eingetragen.</div>';
-      return;
-    }
-    // Count per weapon
-    const counts = {};
-    weapons.forEach(w => counts[w.name] = 0);
-    craftLog.forEach(e => { if(counts[e.weapon] !== undefined) counts[e.weapon]++; });
-
-    let statsHtml = '<div class="log-stats">';
-    weapons.forEach(w => {
-      statsHtml += `<div class="log-stat-item"><span class="log-stat-name">${w.name}</span><span class="log-stat-count">${counts[w.name]}x</span></div>`;
-    });
-    statsHtml += '</div>';
-
-    let entriesHtml = '<div class="log-entries">';
-    craftLog.forEach((e, i) => {
-      entriesHtml += `<div class="log-entry">
-        <div class="log-entry-left">
-          <span class="log-entry-icon">⚒</span>
-          <span class="log-entry-weapon">${e.weapon}</span>
-        </div>
-        <div class="log-entry-right">
-          <span class="log-entry-time">${e.timestamp}</span>
-          <button class="log-delete" onclick="deleteLog(${i})">✕</button>
-        </div>
-      </div>`;
-    });
-    entriesHtml += '</div>';
-    el.innerHTML = statsHtml + entriesHtml;
-  }
-
-  function deleteLog(i) {
-    craftLog.splice(i, 1);
-    try { localStorage.setItem('hk-craft-log', JSON.stringify(craftLog)); } catch(e) {}
-    renderLog();
-  }
-
-  function initTracker() {
-    const tabsEl = document.getElementById('tracker-tabs');
-    // Load saved state from localStorage
-    try {
-      const saved = localStorage.getItem('hk-tracker');
-      if(saved) trackerState = JSON.parse(saved);
-    } catch(e) {}
-
-    weapons.forEach((w, i) => {
-      const btn = document.createElement('button');
-      btn.className = 'tracker-weapon-btn' + (i === 0 ? ' active' : '');
-      btn.textContent = w.name;
-      btn.onclick = () => selectWeapon(i);
+  function initTracker(){
+    try{const saved=localStorage.getItem('hk-tracker');if(saved)trackerState=JSON.parse(saved);}catch(e){}
+    const tabsEl=document.getElementById('tracker-tabs');
+    weapons.forEach((w,i)=>{
+      const btn=document.createElement('button');
+      btn.className='tracker-weapon-btn'+(i===0?' active':'');
+      btn.textContent=w.name; btn.onclick=()=>selectWeapon(i);
       tabsEl.appendChild(btn);
-      if(!trackerState[i]) {
-        trackerState[i] = {};
-        w.materials.forEach((m, j) => trackerState[i][j] = 0);
-      }
+      if(!trackerState[i]){trackerState[i]={};w.materials.forEach((m,j)=>trackerState[i][j]=0);}
     });
     renderTracker(0);
   }
 
-  function selectWeapon(i) {
-    activeWeapon = i;
-    document.querySelectorAll('.tracker-weapon-btn').forEach((b, j) => b.classList.toggle('active', i === j));
+  function selectWeapon(i){
+    activeWeapon=i;
+    document.querySelectorAll('.tracker-weapon-btn').forEach((b,j)=>b.classList.toggle('active',i===j));
     renderTracker(i);
   }
 
-  function renderTracker(i) {
-    const w = weapons[i];
-    const state = trackerState[i];
-    let allDone = true;
-    let html = `<div class="tracker-card"><div class="tracker-card-title">${w.name}</div>`;
-    w.materials.forEach((m, j) => {
-      const val = state[j] || 0;
-      const pct = Math.min(100, Math.round((val / m.required) * 100));
-      const done = val >= m.required;
-      if(!done) allDone = false;
-      html += `
-        <div class="tracker-material">
-          <div class="tracker-mat-header">
-            <span class="tracker-mat-name">${m.name}</span>
-            <span class="tracker-mat-count">${val} / ${m.required}</span>
-          </div>
-          <div class="tracker-bar-bg"><div class="tracker-bar-fill ${done ? 'complete' : ''}" style="width:${pct}%"></div></div>
-          <div class="tracker-input-row">
-            <input class="tracker-slider" type="range" min="0" max="${m.required}" value="${val}" oninput="updateMat(${i},${j},this.value)" />
-            <input class="tracker-input" type="number" min="0" max="${m.required}" value="${val}" oninput="updateMat(${i},${j},this.value)" />
-            <span class="tracker-input-label">/ ${m.required} (${pct}%)</span>
-          </div>
-        </div>`;
+  function renderTracker(i){
+    const w=weapons[i],state=trackerState[i];
+    let allDone=true;
+    let html=`<div class="tracker-card"><div class="tracker-card-title">${w.name}</div>`;
+    w.materials.forEach((m,j)=>{
+      const val=state[j]||0,pct=Math.min(100,Math.round((val/m.required)*100)),done=val>=m.required;
+      if(!done)allDone=false;
+      html+=`<div class="tracker-material">
+        <div class="tracker-mat-header"><span class="tracker-mat-name">${m.name}</span><span class="tracker-mat-count">${val} / ${m.required}</span></div>
+        <div class="tracker-bar-bg"><div class="tracker-bar-fill${done?' complete':''}" style="width:${pct}%"></div></div>
+        <div class="tracker-input-row">
+          <input class="tracker-slider" type="range" min="0" max="${m.required}" value="${val}" oninput="updateMat(${i},${j},this.value)"/>
+          <input class="tracker-input" type="number" min="0" value="${val}" oninput="updateMat(${i},${j},this.value)"/>
+          <span class="tracker-input-label">/ ${m.required} (${pct}%)</span>
+        </div>
+      </div>`;
     });
-    html += `<div class="tracker-summary">
-      <span class="tracker-summary-text">${allDone ? '✅ Alle Materialien vorhanden — bereit zum Craften!' : 'Noch nicht genug Materialien.'}</span>
-      ${allDone ? `<button class="tracker-craft-btn" onclick="craftWeapon(${i})">⚒ CRAFTEN</button>` : `<span class="tracker-ready no">✗ Nicht Craftbar</span>`}
-    </div>
-    ${allDone ? `<div class="tracker-craft-hint">Klicke auf "CRAFTEN" um den Craft zu bestätigen und ins Log einzutragen.</div>` : ''}
-    </div>`;
-    document.getElementById('tracker-content').innerHTML = html;
+    html+=`<div class="tracker-summary">
+      <span class="tracker-summary-text">${allDone?'✅ Alle Materialien vorhanden — bereit zum Craften!':'Noch nicht genug Materialien.'}</span>
+      ${allDone?`<button class="tracker-craft-btn" onclick="craftWeapon(${i})">⚒ CRAFTEN</button>`:`<span class="tracker-ready no">✗ Nicht Craftbar</span>`}
+    </div>${allDone?`<div class="tracker-craft-hint">Klicke auf "CRAFTEN" um den Craft zu bestätigen und ins Log einzutragen.</div>`:''}</div>`;
+    document.getElementById('tracker-content').innerHTML=html;
   }
 
-  function updateMat(wi, mi, val) {
-    const num = Math.max(0, parseInt(val) || 0);
-    trackerState[wi][mi] = num;
-    try { localStorage.setItem('hk-tracker', JSON.stringify(trackerState)); } catch(e) {}
-
-    // Sync slider + input without re-render
-    const rows = document.querySelectorAll(`#tracker-content .tracker-material`);
-    if(rows[mi]) {
-      const slider = rows[mi].querySelector('.tracker-slider');
-      const input = rows[mi].querySelector('.tracker-input');
-      if(slider && slider !== document.activeElement) slider.value = num;
-      if(input && input !== document.activeElement) input.value = num;
-
-      // Update bar
-      const required = weapons[wi].materials[mi].required;
-      const pct = Math.min(100, Math.round((num / required) * 100));
-      const bar = rows[mi].querySelector('.tracker-bar-fill');
-      const count = rows[mi].querySelector('.tracker-mat-count');
-      const label = rows[mi].querySelector('.tracker-input-label');
-      if(bar) { bar.style.width = pct + '%'; bar.className = 'tracker-bar-fill' + (num >= required ? ' complete' : ''); }
-      if(count) count.textContent = num + ' / ' + required;
-      if(label) label.textContent = '/ ' + required + ' (' + pct + '%)';
+  function updateMat(wi,mi,val){
+    const num=Math.max(0,parseInt(val)||0);
+    trackerState[wi][mi]=num;
+    try{localStorage.setItem('hk-tracker',JSON.stringify(trackerState));}catch(e){}
+    const rows=document.querySelectorAll('#tracker-content .tracker-material');
+    if(rows[mi]){
+      const slider=rows[mi].querySelector('.tracker-slider'),input=rows[mi].querySelector('.tracker-input');
+      if(slider&&slider!==document.activeElement)slider.value=num;
+      if(input&&input!==document.activeElement)input.value=num;
+      const required=weapons[wi].materials[mi].required,pct=Math.min(100,Math.round((num/required)*100));
+      const bar=rows[mi].querySelector('.tracker-bar-fill'),count=rows[mi].querySelector('.tracker-mat-count'),label=rows[mi].querySelector('.tracker-input-label');
+      if(bar){bar.style.width=pct+'%';bar.className='tracker-bar-fill'+(num>=required?' complete':'');}
+      if(count)count.textContent=num+' / '+required;
+      if(label)label.textContent='/ '+required+' ('+pct+'%)';
     }
-
-    // Check if all done and update summary
-    const w = weapons[wi];
-    const allDone = w.materials.every((m, j) => (trackerState[wi][j] || 0) >= m.required);
-    const summary = document.querySelector('#tracker-content .tracker-summary');
-    if(summary) {
-      summary.querySelector('.tracker-summary-text').textContent = allDone ? '✅ Alle Materialien vorhanden — bereit zum Craften!' : 'Noch nicht genug Materialien.';
-      const right = summary.querySelector('.tracker-ready, .tracker-craft-btn');
-      if(right) right.outerHTML = allDone
-        ? `<button class="tracker-craft-btn" onclick="craftWeapon(${wi})">⚒ CRAFTEN</button>`
-        : `<span class="tracker-ready no">✗ Nicht Craftbar</span>`;
+    const w=weapons[wi],allDone=w.materials.every((m,j)=>(trackerState[wi][j]||0)>=m.required);
+    const summary=document.querySelector('#tracker-content .tracker-summary');
+    if(summary){
+      summary.querySelector('.tracker-summary-text').textContent=allDone?'✅ Alle Materialien vorhanden — bereit zum Craften!':'Noch nicht genug Materialien.';
+      const right=summary.querySelector('.tracker-ready,.tracker-craft-btn');
+      if(right)right.outerHTML=allDone?`<button class="tracker-craft-btn" onclick="craftWeapon(${wi})">⚒ CRAFTEN</button>`:`<span class="tracker-ready no">✗ Nicht Craftbar</span>`;
     }
-    const hint = document.querySelector('#tracker-content .tracker-craft-hint');
-    if(allDone && !hint) {
-      const sum = document.querySelector('#tracker-content .tracker-summary');
-      if(sum) { const d = document.createElement('div'); d.className='tracker-craft-hint'; d.textContent='Klicke auf "CRAFTEN" um den Craft zu bestätigen und ins Log einzutragen.'; sum.after(d); }
-    } else if(!allDone && hint) hint.remove();
+    const hint=document.querySelector('#tracker-content .tracker-craft-hint');
+    if(allDone&&!hint){const sum=document.querySelector('#tracker-content .tracker-summary');if(sum){const d=document.createElement('div');d.className='tracker-craft-hint';d.textContent='Klicke auf "CRAFTEN" um den Craft zu bestätigen und ins Log einzutragen.';sum.after(d);}}
+    else if(!allDone&&hint)hint.remove();
   }
+
+  // Craft Log
+  let craftLog=[];
+  try{const saved=localStorage.getItem('hk-craft-log');if(saved)craftLog=JSON.parse(saved);}catch(e){}
+
+  function craftWeapon(wi){
+    const w=weapons[wi];
+    craftLog.unshift({weapon:w.name,timestamp:new Date().toLocaleString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})});
+    try{localStorage.setItem('hk-craft-log',JSON.stringify(craftLog));}catch(e){}
+    w.materials.forEach((m,j)=>trackerState[wi][j]=0);
+    try{localStorage.setItem('hk-tracker',JSON.stringify(trackerState));}catch(e){}
+    renderTracker(wi); renderLog();
+    const hint=document.querySelector('.tracker-craft-hint');
+    if(hint){hint.textContent='✅ Craft eingetragen!';hint.style.color='#2ecc71';}
+  }
+
+  function renderLog(){
+    const el=document.getElementById('craft-log-list');
+    if(!el)return;
+    if(craftLog.length===0){el.innerHTML='<div class="log-empty">Noch keine Crafts eingetragen.</div>';return;}
+    const counts={};weapons.forEach(w=>counts[w.name]=0);
+    craftLog.forEach(e=>{if(counts[e.weapon]!==undefined)counts[e.weapon]++;});
+    let html='<div class="log-stats">';
+    weapons.forEach(w=>html+=`<div class="log-stat-item"><span class="log-stat-name">${w.name}</span><span class="log-stat-count">${counts[w.name]}x</span></div>`);
+    html+='</div><div class="log-entries">';
+    craftLog.forEach((e,i)=>html+=`<div class="log-entry"><div class="log-entry-left"><span class="log-entry-icon">⚒</span><span class="log-entry-weapon">${e.weapon}</span></div><div class="log-entry-right"><span class="log-entry-time">${e.timestamp}</span><button class="log-delete" onclick="deleteLog(${i})">✕</button></div></div>`);
+    html+='</div>';
+    el.innerHTML=html;
+  }
+
+  function deleteLog(i){craftLog.splice(i,1);try{localStorage.setItem('hk-craft-log',JSON.stringify(craftLog));}catch(e){}renderLog();}
 
   initTracker();
   renderLog();
-
-  function switchSubtab(name) {
-    const parent = event.target.closest('.panel-section');
-    parent.querySelectorAll('.subtab').forEach(t => t.classList.remove('active'));
-    parent.querySelectorAll('.subtab-content').forEach(s => s.classList.remove('active'));
-    event.target.classList.add('active');
-    document.getElementById('subtab-' + name).classList.add('active');
-  }
 </script>
 </body>
 </html>
