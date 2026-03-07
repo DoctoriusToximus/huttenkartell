@@ -182,9 +182,10 @@
     /* PANEL PAGE */
     .panel-wrap {
       display: flex; min-height: 100vh; padding-top: 100px; position: relative; z-index: 2;
+      width: 100%;
     }
     .panel-sidebar {
-      width: 220px; min-height: calc(100vh - 100px); background: var(--surface);
+      width: 220px; min-width: 220px; min-height: calc(100vh - 100px); background: var(--surface);
       border-right: 1px solid var(--border); padding: 32px 0; flex-shrink: 0;
       position: sticky; top: 100px; height: calc(100vh - 100px); overflow-y: auto;
     }
@@ -202,7 +203,7 @@
     .panel-tab:hover { color: var(--accent2); background: var(--surface2); }
     .panel-tab.active { color: var(--accent2); border-left-color: var(--accent); background: var(--surface2); }
 
-    .panel-main { flex: 1; padding: 48px 48px; overflow-y: auto; }
+    .panel-main { flex: 1; min-width: 0; padding: 48px; overflow-y: auto; }
     .panel-section { display: none; }
     .panel-section.active { display: block; }
     .panel-section-header { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
