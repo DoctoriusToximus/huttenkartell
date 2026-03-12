@@ -326,6 +326,17 @@
     .reveal { opacity:0; transform:translateY(30px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.visible { opacity:1; transform:translateY(0); }
 
+    /* LIGHTBOX */
+    .lightbox { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,.92); backdrop-filter: blur(10px); align-items: center; justify-content: center; cursor: zoom-out; }
+    .lightbox.open { display: flex; animation: fadeIn .2s ease; }
+    .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border: 1px solid var(--border); box-shadow: 0 0 80px var(--glow), 0 0 160px rgba(0,0,0,.8); animation: zoomIn .25s ease; }
+    .lightbox-close { position: absolute; top: 24px; right: 28px; background: none; border: none; color: var(--dim); font-size: 1.8rem; cursor: pointer; transition: color .2s; line-height: 1; }
+    .lightbox-close:hover { color: var(--accent2); }
+    .lightbox-name { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); font-family: 'Orbitron', sans-serif; font-size: .85rem; letter-spacing: .2em; text-transform: uppercase; color: var(--bright); text-shadow: 0 0 20px var(--glow); white-space: nowrap; }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+    @keyframes zoomIn { from{transform:scale(.85);opacity:0} to{transform:scale(1);opacity:1} }
+    .leader-avatar img { cursor: zoom-in; }
+
     @media(max-width:768px){
       .about-grid{grid-template-columns:1fr}
       .job-row{grid-template-columns:1fr;gap:12px}
@@ -433,7 +444,7 @@
       <div class="leaders-pyramid">
         <div class="leaders-row tier-1 reveal">
           <div class="leader-card">
-            <div class="leader-avatar"><img src="https://i.imgur.com/9SUO0Bx.jpeg" alt="Jâruz" onerror="this.style.display='none'"/>JZ</div>
+            <div class="leader-avatar"><img src="https://i.imgur.com/9SUO0Bx.jpeg" onclick="openLightbox('https://i.imgur.com/9SUO0Bx.jpeg','Jâruz')" alt="Jâruz" onerror="this.style.display='none'"/>JZ</div>
             <div class="leader-name">Jâruz</div>
             <div class="leader-rank">👑 Majordomus</div>
             <p class="leader-bio">Der Majordomus des Huttenkartells — Jâruz koordiniert, plant und sorgt dafür, dass das Kartell reibungslos funktioniert. Seine Autorität wird von allen respektiert.</p>
@@ -442,7 +453,7 @@
         <div class="leaders-sep"></div>
         <div class="leaders-row tier-2 reveal">
           <div class="leader-card">
-            <div class="leader-avatar"><img src="https://i.imgur.com/40gtlIi.jpeg" alt="Fruity Flame" onerror="this.style.display='none'"/>FO</div>
+            <div class="leader-avatar"><img src="https://i.imgur.com/40gtlIi.jpeg" onclick="openLightbox('https://i.imgur.com/40gtlIi.jpeg','Fruity "Flame" Olatunji')" alt="Fruity Flame" onerror="this.style.display='none'"/>FO</div>
             <div class="leader-name">Fruity "Flame" Olatunji</div>
             <div class="leader-rank">☠ Unterlord</div>
             <p class="leader-bio">Der unbestrittene Vollstrecker des Kartells. Flame führt mit Kaltblütigkeit und strategischem Genius.</p>
@@ -451,13 +462,13 @@
         <div class="leaders-sep"></div>
         <div class="leaders-row tier-3 reveal">
           <div class="leader-card">
-            <div class="leader-avatar"><img src="https://i.imgur.com/i7dXdkY.png" alt="Christos Sluss" onerror="this.style.display='none'"/>CP</div>
+            <div class="leader-avatar"><img src="https://i.imgur.com/i7dXdkY.png" onclick="openLightbox('https://i.imgur.com/i7dXdkY.png','Christos "Sluss" Petridis')" alt="Christos Sluss" onerror="this.style.display='none'"/>CP</div>
             <div class="leader-name">Christos "Sluss" Petridis</div>
             <div class="leader-rank">⚡ Vollstrecker</div>
             <p class="leader-bio">Der Arm des Kartells. Sluss setzt Befehle mit Entschlossenheit und Effizienz um.</p>
           </div>
           <div class="leader-card">
-            <div class="leader-avatar"><img src="https://i.imgur.com/2ND8gru.png" alt="Dren Valis" onerror="this.style.display='none'"/>DV</div>
+            <div class="leader-avatar"><img src="https://i.imgur.com/2ND8gru.png" onclick="openLightbox('https://i.imgur.com/2ND8gru.png','Dren Valis')" alt="Dren Valis" onerror="this.style.display='none'"/>DV</div>
             <div class="leader-name">Dren Valis</div>
             <div class="leader-rank">⚡ Vollstrecker</div>
             <p class="leader-bio">Ein Vollstrecker des Kartells — Dren Valis steht für Stärke und bedingungslose Loyalität.</p>
@@ -705,6 +716,13 @@
   </div>
 </div>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt=""/>
+  <div class="lightbox-name" id="lightbox-name"></div>
+</div>
+
 <script>
   // Stars
   const s = document.getElementById('stars');
@@ -714,6 +732,20 @@
     el.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;animation-duration:${Math.random()*5+3}s;animation-delay:${Math.random()*6}s;`;
     s.appendChild(el);
   }
+
+  // Lightbox
+  function openLightbox(src, name) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox-name').textContent = name;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(e) {
+    if(e && e.target === document.getElementById('lightbox-img')) return;
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox(); });
 
   // Reveal
   const obs = new IntersectionObserver(entries => entries.forEach(e => {
