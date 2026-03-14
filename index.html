@@ -289,6 +289,18 @@
     .log-delete:hover { color: var(--accent2); }
 
     /* MATERIAL TRACKER */
+    .tracker-card-title-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+    .tracker-card-title { font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 700; color: var(--bright); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 0; }
+    .tracker-level-wrap { position: relative; }
+    .tracker-level-btn { font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; background: var(--surface2); border: 1px solid var(--border); color: var(--accent2); padding: 6px 14px; cursor: pointer; transition: all .2s; }
+    .tracker-level-btn:hover,.tracker-level-btn.pending { border-color: var(--accent); }
+    .tracker-level-btn.pending { color: var(--dim); }
+    .tracker-level-drop { display: none; position: absolute; top: calc(100% + 6px); right: 0; background: var(--surface); border: 1px solid var(--border); min-width: 160px; z-index: 50; box-shadow: 0 8px 24px rgba(0,0,0,.6); }
+    .tracker-level-drop.open { display: block; }
+    .tracker-level-opt { padding: 10px 16px; font-size: .82rem; letter-spacing: .06em; color: var(--dim); cursor: pointer; transition: all .15s; display: flex; align-items: center; justify-content: space-between; }
+    .tracker-level-opt:hover { background: var(--surface2); color: var(--bright); }
+    .tracker-level-opt.active { color: var(--accent2); background: rgba(192,57,43,.08); }
+    .pending-tag { font-size: .65rem; color: var(--dim); letter-spacing: .12em; border: 1px solid var(--border); padding: 1px 6px; }
     .tracker-group { margin-bottom: 24px; }
     .tracker-group-label {
       font-size: .68rem; letter-spacing: .28em; text-transform: uppercase;
@@ -301,7 +313,7 @@
     .tracker-weapon-btn:hover { border-color: var(--accent); color: var(--accent2); }
     .tracker-weapon-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
     .tracker-card { background: var(--surface); border: 1px solid var(--border); padding: 32px; max-width: 700px; }
-    .tracker-card-title { font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 700; color: var(--bright); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 24px; }
+
     .tracker-material { margin-bottom: 20px; }
     .tracker-mat-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
     .tracker-mat-name { font-size: .9rem; color: var(--text); font-weight: 600; letter-spacing: .04em; }
@@ -853,37 +865,89 @@
     {name:'BK-43',materials:[{name:'Tibanna Gas',required:12},{name:'Durastahl',required:20},{name:'Beskar',required:5},{name:'Einfaches Waffenbauteil',required:10},{name:'Fortgeschrittenes Waffenbauteil',required:15},{name:'Professionelles Waffenbauteil',required:20}]},
     {name:'M-45 LMG',materials:[{name:'Tibanna Gas',required:32},{name:'Durastahl',required:50},{name:'Beskar',required:35},{name:'Einfaches Waffenbauteil',required:20},{name:'Fortgeschrittenes Waffenbauteil',required:30},{name:'Professionelles Waffenbauteil',required:55}]},
     {name:'POWER-5',materials:[{name:'Tibanna Gas',required:10},{name:'Durastahl',required:12},{name:'Beskar',required:3},{name:'Einfaches Waffenbauteil',required:5},{name:'Fortgeschrittenes Waffenbauteil',required:10},{name:'Professionelles Waffenbauteil',required:7}]},
-    {name:'Spitzhacke Stufe 1',materials:[
-      {name:'Einfaches Metall',required:60,group:'Upgrade Materialien'},
-      {name:'Holz',required:150,group:'Upgrade Materialien'},
-      {name:'Durastahl',required:55,group:'Upgrade Materialien'},
-      {name:'Lignan-Kristall',required:40,group:'Upgrade Materialien'},
-      {name:'Schrott (für Einf. Metall)',required:60,group:'Rohstoffe'},
-      {name:'Rohes Doonium (für Durastahl)',required:55,group:'Rohstoffe'},
-      {name:'Juwelen (für Durastahl)',required:55,group:'Rohstoffe'},
+    {name:'Spitzhacke',levels:[
+      {label:'Stufe 1 → 2', materials:[
+        {name:'Einfaches Metall',required:60,group:'Upgrade Materialien'},
+        {name:'Holz',required:150,group:'Upgrade Materialien'},
+        {name:'Durastahl',required:55,group:'Upgrade Materialien'},
+        {name:'Lignan-Kristall',required:40,group:'Upgrade Materialien'},
+        {name:'Schrott (für Einf. Metall)',required:60,group:'Rohstoffe'},
+        {name:'Rohes Doonium (für Durastahl)',required:55,group:'Rohstoffe'},
+        {name:'Einfaches Metall (für Durastahl)',required:55,group:'Rohstoffe'},
+        {name:'Juwelen (für Durastahl)',required:55,group:'Rohstoffe'},
+      ]},
+      {label:'Stufe 2 → 3', materials:[
+        {name:'Einfaches Metall',required:200,group:'Upgrade Materialien'},
+        {name:'Holz',required:300,group:'Upgrade Materialien'},
+        {name:'Durastahl',required:90,group:'Upgrade Materialien'},
+        {name:'Lignan-Kristall',required:75,group:'Upgrade Materialien'},
+        {name:'Beskar',required:15,group:'Upgrade Materialien'},
+        {name:'Schrott (für Einf. Metall)',required:200,group:'Rohstoffe'},
+        {name:'Rohes Doonium (für Durastahl)',required:90,group:'Rohstoffe'},
+        {name:'Einfaches Metall (für Durastahl)',required:90,group:'Rohstoffe'},
+        {name:'Juwelen (für Durastahl)',required:90,group:'Rohstoffe'},
+      ]},
+      {label:'Stufe 3 → 4', materials:[
+        {name:'Einfaches Metall',required:0,group:'Upgrade Materialien'},
+        {name:'Holz',required:0,group:'Upgrade Materialien'},
+        {name:'Durastahl',required:0,group:'Upgrade Materialien'},
+        {name:'Lignan-Kristall',required:0,group:'Upgrade Materialien'},
+        {name:'Beskar',required:0,group:'Upgrade Materialien'},
+      ]},
     ]},
-    {name:'Axt Stufe 1',materials:[
-      {name:'Einfaches Metall',required:60,group:'Upgrade Materialien'},
-      {name:'Holz',required:150,group:'Upgrade Materialien'},
-      {name:'Durastahl',required:55,group:'Upgrade Materialien'},
-      {name:'Lignan-Kristall',required:40,group:'Upgrade Materialien'},
-      {name:'Schrott (für Einf. Metall)',required:60,group:'Rohstoffe'},
-      {name:'Rohes Doonium (für Durastahl)',required:55,group:'Rohstoffe'},
-      {name:'Juwelen (für Durastahl)',required:55,group:'Rohstoffe'},
+    {name:'Axt',levels:[
+      {label:'Stufe 1 → 2', materials:[
+        {name:'Einfaches Metall',required:60,group:'Upgrade Materialien'},
+        {name:'Holz',required:150,group:'Upgrade Materialien'},
+        {name:'Durastahl',required:55,group:'Upgrade Materialien'},
+        {name:'Lignan-Kristall',required:40,group:'Upgrade Materialien'},
+        {name:'Schrott (für Einf. Metall)',required:60,group:'Rohstoffe'},
+        {name:'Rohes Doonium (für Durastahl)',required:55,group:'Rohstoffe'},
+        {name:'Einfaches Metall (für Durastahl)',required:55,group:'Rohstoffe'},
+        {name:'Juwelen (für Durastahl)',required:55,group:'Rohstoffe'},
+      ]},
+      {label:'Stufe 2 → 3', materials:[
+        {name:'Einfaches Metall',required:200,group:'Upgrade Materialien'},
+        {name:'Holz',required:300,group:'Upgrade Materialien'},
+        {name:'Durastahl',required:90,group:'Upgrade Materialien'},
+        {name:'Lignan-Kristall',required:75,group:'Upgrade Materialien'},
+        {name:'Beskar',required:15,group:'Upgrade Materialien'},
+        {name:'Schrott (für Einf. Metall)',required:200,group:'Rohstoffe'},
+        {name:'Rohes Doonium (für Durastahl)',required:90,group:'Rohstoffe'},
+        {name:'Einfaches Metall (für Durastahl)',required:90,group:'Rohstoffe'},
+        {name:'Juwelen (für Durastahl)',required:90,group:'Rohstoffe'},
+      ]},
+      {label:'Stufe 3 → 4', materials:[
+        {name:'Einfaches Metall',required:0,group:'Upgrade Materialien'},
+        {name:'Holz',required:0,group:'Upgrade Materialien'},
+        {name:'Durastahl',required:0,group:'Upgrade Materialien'},
+        {name:'Lignan-Kristall',required:0,group:'Upgrade Materialien'},
+        {name:'Beskar',required:0,group:'Upgrade Materialien'},
+      ]},
     ]},
   ];
   let trackerState={};
   let activeWeapon=0;
 
+  let selectedLevel = {}; // per weapon index
+
+  function getWeaponMaterials(w, li) {
+    if(w.levels) return w.levels[li].materials;
+    return w.materials;
+  }
+
   function initTracker(){
     try{const saved=localStorage.getItem('hk-tracker');if(saved)trackerState=JSON.parse(saved);}catch(e){}
+    try{const saved=localStorage.getItem('hk-levels');if(saved)selectedLevel=JSON.parse(saved);}catch(e){}
     const tabsEl=document.getElementById('tracker-tabs');
     weapons.forEach((w,i)=>{
       const btn=document.createElement('button');
       btn.className='tracker-weapon-btn'+(i===0?' active':'');
       btn.textContent=w.name; btn.onclick=()=>selectWeapon(i);
       tabsEl.appendChild(btn);
-      if(!trackerState[i]){trackerState[i]={};w.materials.forEach((m,j)=>trackerState[i][j]=0);}
+      if(selectedLevel[i]===undefined) selectedLevel[i]=0;
+      const mats=getWeaponMaterials(w,selectedLevel[i]);
+      if(!trackerState[i]){trackerState[i]={};mats.forEach((m,j)=>trackerState[i][j]=0);}
     });
     renderTracker(0);
   }
@@ -894,12 +958,47 @@
     renderTracker(i);
   }
 
+  function setLevel(wi, li) {
+    selectedLevel[wi] = li;
+    try{localStorage.setItem('hk-levels',JSON.stringify(selectedLevel));}catch(e){}
+    // Reset state for new level
+    const mats = getWeaponMaterials(weapons[wi], li);
+    trackerState[wi] = {}; mats.forEach((m,j)=>trackerState[wi][j]=0);
+    try{localStorage.setItem('hk-tracker',JSON.stringify(trackerState));}catch(e){}
+    renderTracker(wi);
+    // Close dropdown
+    document.getElementById(`level-drop-${wi}`)?.classList.remove('open');
+  }
+
+  function toggleLevelDrop(wi) {
+    const d = document.getElementById(`level-drop-${wi}`);
+    if(d) d.classList.toggle('open');
+  }
+
   function renderTracker(i){
-    const w=weapons[i],state=trackerState[i];
+    const w=weapons[i];
+    const li = w.levels ? (selectedLevel[i]||0) : 0;
+    const mats = getWeaponMaterials(w, li);
+    if(!trackerState[i]){trackerState[i]={};mats.forEach((m,j)=>trackerState[i][j]=0);}
+    const state=trackerState[i];
     let allDone=true;
-    let html=`<div class="tracker-card"><div class="tracker-card-title">${w.name}</div>`;
+
+    // Level selector HTML
+    let levelSel = '';
+    if(w.levels){
+      const currentLabel = w.levels[li].label;
+      const isPending = w.levels[li].materials.every(m=>m.required===0);
+      levelSel = `<div class="tracker-level-wrap">
+        <button class="tracker-level-btn${isPending?' pending':''}" onclick="toggleLevelDrop(${i})">${currentLabel} ▾</button>
+        <div class="tracker-level-drop" id="level-drop-${i}">
+          ${w.levels.map((lv,idx)=>`<div class="tracker-level-opt${idx===li?' active':''}" onclick="setLevel(${i},${idx})">${lv.label}${lv.materials.every(m=>m.required===0)?' <span class=\'pending-tag\'>TBD</span>':''}</div>`).join('')}
+        </div>
+      </div>`;
+    }
+
+    let html=`<div class="tracker-card"><div class="tracker-card-title-row"><span class="tracker-card-title">${w.name}</span>${levelSel}</div>`;
     let lastGroup=null;
-    w.materials.forEach((m,j)=>{
+    mats.forEach((m,j)=>{
       const val=state[j]||0,pct=Math.min(100,Math.round((val/m.required)*100)),done=val>=m.required;
       if(!done)allDone=false;
       if(m.group && m.group!==lastGroup){
@@ -934,13 +1033,15 @@
       const slider=rows[mi].querySelector('.tracker-slider'),input=rows[mi].querySelector('.tracker-input');
       if(slider&&slider!==document.activeElement)slider.value=num;
       if(input&&input!==document.activeElement)input.value=num;
-      const required=weapons[wi].materials[mi].required,pct=Math.min(100,Math.round((num/required)*100));
+      const li=selectedLevel[wi]||0;
+      const mats=getWeaponMaterials(weapons[wi],li);
+      const required=mats[mi].required,pct=Math.min(100,Math.round((num/required)*100));
       const bar=rows[mi].querySelector('.tracker-bar-fill'),count=rows[mi].querySelector('.tracker-mat-count'),label=rows[mi].querySelector('.tracker-input-label');
       if(bar){bar.style.width=pct+'%';bar.className='tracker-bar-fill'+(num>=required?' complete':'');}
       if(count)count.textContent=num+' / '+required;
       if(label)label.textContent='/ '+required+' ('+pct+'%)';
     }
-    const w=weapons[wi],allDone=w.materials.every((m,j)=>(trackerState[wi][j]||0)>=m.required);
+    const w=weapons[wi],li2=selectedLevel[wi]||0,mats2=getWeaponMaterials(w,li2),allDone=mats2.every((m,j)=>(trackerState[wi][j]||0)>=m.required);
     const summary=document.querySelector('#tracker-content .tracker-summary');
     if(summary){
       summary.querySelector('.tracker-summary-text').textContent=allDone?'✅ Alle Materialien vorhanden — bereit zum Craften!':'Noch nicht genug Materialien.';
@@ -960,7 +1061,7 @@
     const w=weapons[wi];
     craftLog.unshift({weapon:w.name,timestamp:new Date().toLocaleString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})});
     try{localStorage.setItem('hk-craft-log',JSON.stringify(craftLog));}catch(e){}
-    w.materials.forEach((m,j)=>trackerState[wi][j]=0);
+    const li=selectedLevel[wi]||0;getWeaponMaterials(w,li).forEach((m,j)=>trackerState[wi][j]=0);
     try{localStorage.setItem('hk-tracker',JSON.stringify(trackerState));}catch(e){}
     renderTracker(wi); renderLog();
     const hint=document.querySelector('.tracker-craft-hint');
