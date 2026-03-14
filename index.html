@@ -289,6 +289,13 @@
     .log-delete:hover { color: var(--accent2); }
 
     /* MATERIAL TRACKER */
+    .tracker-group { margin-bottom: 24px; }
+    .tracker-group-label {
+      font-size: .68rem; letter-spacing: .28em; text-transform: uppercase;
+      color: var(--accent); border-bottom: 1px solid var(--border);
+      padding-bottom: 8px; margin-bottom: 16px; font-family: 'Orbitron', sans-serif;
+    }
+    .tracker-group + .tracker-group { margin-top: 8px; padding-top: 8px; }
     .tracker-weapon-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
     .tracker-weapon-btn { font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: .82rem; letter-spacing: .1em; text-transform: uppercase; padding: 8px 20px; background: var(--surface); border: 1px solid var(--border); color: var(--dim); cursor: pointer; transition: all .2s; }
     .tracker-weapon-btn:hover { border-color: var(--accent); color: var(--accent2); }
@@ -846,8 +853,24 @@
     {name:'BK-43',materials:[{name:'Tibanna Gas',required:12},{name:'Durastahl',required:20},{name:'Beskar',required:5},{name:'Einfaches Waffenbauteil',required:10},{name:'Fortgeschrittenes Waffenbauteil',required:15},{name:'Professionelles Waffenbauteil',required:20}]},
     {name:'M-45 LMG',materials:[{name:'Tibanna Gas',required:32},{name:'Durastahl',required:50},{name:'Beskar',required:35},{name:'Einfaches Waffenbauteil',required:20},{name:'Fortgeschrittenes Waffenbauteil',required:30},{name:'Professionelles Waffenbauteil',required:55}]},
     {name:'POWER-5',materials:[{name:'Tibanna Gas',required:10},{name:'Durastahl',required:12},{name:'Beskar',required:3},{name:'Einfaches Waffenbauteil',required:5},{name:'Fortgeschrittenes Waffenbauteil',required:10},{name:'Professionelles Waffenbauteil',required:7}]},
-    {name:'Spitzhacke Stufe 1',materials:[{name:'Einfaches Metall',required:60},{name:'Holz',required:150},{name:'Durastahl',required:55},{name:'Lignan-Kristall',required:40}]},
-    {name:'Axt Stufe 1',materials:[{name:'Einfaches Metall',required:60},{name:'Holz',required:150},{name:'Durastahl',required:55},{name:'Lignan-Kristall',required:40}]},
+    {name:'Spitzhacke Stufe 1',materials:[
+      {name:'Einfaches Metall',required:60,group:'Upgrade Materialien'},
+      {name:'Holz',required:150,group:'Upgrade Materialien'},
+      {name:'Durastahl',required:55,group:'Upgrade Materialien'},
+      {name:'Lignan-Kristall',required:40,group:'Upgrade Materialien'},
+      {name:'Schrott (für Einf. Metall)',required:60,group:'Rohstoffe'},
+      {name:'Rohes Doonium (für Durastahl)',required:55,group:'Rohstoffe'},
+      {name:'Juwelen (für Durastahl)',required:55,group:'Rohstoffe'},
+    ]},
+    {name:'Axt Stufe 1',materials:[
+      {name:'Einfaches Metall',required:60,group:'Upgrade Materialien'},
+      {name:'Holz',required:150,group:'Upgrade Materialien'},
+      {name:'Durastahl',required:55,group:'Upgrade Materialien'},
+      {name:'Lignan-Kristall',required:40,group:'Upgrade Materialien'},
+      {name:'Schrott (für Einf. Metall)',required:60,group:'Rohstoffe'},
+      {name:'Rohes Doonium (für Durastahl)',required:55,group:'Rohstoffe'},
+      {name:'Juwelen (für Durastahl)',required:55,group:'Rohstoffe'},
+    ]},
   ];
   let trackerState={};
   let activeWeapon=0;
@@ -875,9 +898,15 @@
     const w=weapons[i],state=trackerState[i];
     let allDone=true;
     let html=`<div class="tracker-card"><div class="tracker-card-title">${w.name}</div>`;
+    let lastGroup=null;
     w.materials.forEach((m,j)=>{
       const val=state[j]||0,pct=Math.min(100,Math.round((val/m.required)*100)),done=val>=m.required;
       if(!done)allDone=false;
+      if(m.group && m.group!==lastGroup){
+        if(lastGroup!==null) html+=`</div>`;
+        html+=`<div class="tracker-group"><div class="tracker-group-label">${m.group}</div>`;
+        lastGroup=m.group;
+      }
       html+=`<div class="tracker-material">
         <div class="tracker-mat-header"><span class="tracker-mat-name">${m.name}</span><span class="tracker-mat-count">${val} / ${m.required}</span></div>
         <div class="tracker-bar-bg"><div class="tracker-bar-fill${done?' complete':''}" style="width:${pct}%"></div></div>
@@ -888,6 +917,7 @@
         </div>
       </div>`;
     });
+    if(lastGroup!==null) html+=`</div>`;
     html+=`<div class="tracker-summary">
       <span class="tracker-summary-text">${allDone?'✅ Alle Materialien vorhanden — bereit zum Craften!':'Noch nicht genug Materialien.'}</span>
       ${allDone?`<button class="tracker-craft-btn" onclick="craftWeapon(${i})">⚒ CRAFTEN</button>`:`<span class="tracker-ready no">✗ Nicht Craftbar</span>`}
